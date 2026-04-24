@@ -6,27 +6,27 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const galleryImages = [
   {
     src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop",
-    alt: "Lüks Otobüs Filosu"
+    alt: "antakla1432"
   },
   {
     src: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
-    alt: "Mercedes S-Class"
+    alt: "antakla14"
   },
   {
     src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
-    alt: "Mercedes V-Class"
+    alt: "antakla1"
   },
   {
     src: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
-    alt: "BMW 7 Serisi"
+    alt: "antakla121321"
   },
   {
     src: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&h=600&fit=crop",
-    alt: "Mercedes Sprinter VIP"
+    alt: "antakla1341"
   },
   {
     src: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
-    alt: "Antalya Transfer"
+    alt: "antakla1ds"
   }
 ]
 
@@ -46,7 +46,7 @@ export function Gallery() {
 
   useEffect(() => {
     if (!isAutoPlaying) return
-    
+
     const interval = setInterval(() => {
       nextSlide()
     }, 2000)
@@ -55,9 +55,9 @@ export function Gallery() {
   }, [isAutoPlaying, nextSlide])
 
   const visibleImages = galleryImages.slice(currentIndex, currentIndex + 3)
-  
+
   // Handle wrap-around for last items
-  const displayImages = visibleImages.length < 3 
+  const displayImages = visibleImages.length < 3
     ? [...visibleImages, ...galleryImages.slice(0, 3 - visibleImages.length)]
     : visibleImages
 
@@ -75,7 +75,7 @@ export function Gallery() {
         </div>
 
         {/* Gallery Container */}
-        <div 
+        <div
           className="relative"
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
@@ -121,11 +121,10 @@ export function Gallery() {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentIndex === index 
-                  ? 'bg-gold w-6' 
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === index
+                  ? 'bg-gold w-6'
                   : 'bg-neutral-300 hover:bg-neutral-400'
-              }`}
+                }`}
               aria-label={`Sayfa ${index + 1}`}
             />
           ))}
