@@ -37,26 +37,18 @@ export function Hero() {
 
   return (
     <section id="anasayfa" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Image Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tzoo.13733.0.1135660.iStock-821804760-1-antalya-QJTkPkfLVAnAYOU5EzyfxlLvhDZR5C.jpg"
+          alt="Antalya"
           className="w-full h-full object-cover"
-          poster="/placeholder.svg?height=1080&width=1920"
-        >
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-driving-on-a-highway-on-a-sunny-day-through-a-city-40035-large.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute inset-0 bg-black/60" />
+        />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-32 pb-16">
+      <div className="relative z-10 text-center px-4 md:px-6 max-w-5xl mx-auto pt-24 md:pt-32 pb-8 md:pb-16">
         <span className="text-gold text-sm md:text-base tracking-[0.3em] uppercase mb-4 block">
           Premium Transfer Hizmeti
         </span>
@@ -70,166 +62,100 @@ export function Hero() {
         </p>
 
         {/* Booking Search Bar */}
-        <div className="bg-white rounded-full shadow-2xl p-2 md:p-3 flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-0 max-w-4xl mx-auto">
+        <div className="bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-4xl mx-auto">
           {/* From */}
-          <div className="flex-1 flex items-center gap-3 px-4 md:px-6 py-3 md:py-2 md:border-r border-neutral-200">
-            <MapPin className="w-5 h-5 text-neutral-400 shrink-0" />
-            <div className="text-left flex-1">
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Nereden</span>
-              <input
-                type="text"
-                value={from}
-                onChange={(e) => setFrom(e.target.value)}
-                placeholder="Havalimanı, Otel..."
-                className="w-full text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none bg-transparent"
-              />
-            </div>
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
+            <MapPin className="w-5 h-5 text-gold shrink-0" />
+            <input
+              type="text"
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              placeholder="Nereden?"
+              className="w-full text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none bg-transparent"
+            />
           </div>
 
           {/* To */}
-          <div className="flex-1 flex items-center gap-3 px-4 md:px-6 py-3 md:py-2 md:border-r border-neutral-200">
-            <MapPin className="w-5 h-5 text-neutral-400 shrink-0" />
-            <div className="text-left flex-1">
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Nereye</span>
-              <input
-                type="text"
-                value={to}
-                onChange={(e) => setTo(e.target.value)}
-                placeholder="Varış noktası..."
-                className="w-full text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none bg-transparent"
-              />
-            </div>
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
+            <MapPin className="w-5 h-5 text-gold shrink-0" />
+            <input
+              type="text"
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              placeholder="Nereye?"
+              className="w-full text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none bg-transparent"
+            />
           </div>
 
           {/* Date */}
-          <div className="flex-1 flex items-center gap-3 px-4 md:px-6 py-3 md:py-2 md:border-r border-neutral-200">
-            <Calendar className="w-5 h-5 text-neutral-400 shrink-0" />
-            <div className="text-left flex-1">
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Tarih</span>
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="w-full text-sm text-neutral-800 focus:outline-none bg-transparent"
-              />
-            </div>
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
+            <Calendar className="w-5 h-5 text-gold shrink-0" />
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              placeholder="Tarih"
+              className="w-full text-sm text-neutral-800 focus:outline-none bg-transparent"
+            />
           </div>
 
           {/* Passengers */}
-          <div className="flex-1 flex items-center gap-3 px-4 md:px-6 py-3 md:py-2 relative">
-            <Users className="w-5 h-5 text-neutral-400 shrink-0" />
-            <div className="text-left flex-1">
-              <span className="text-[10px] text-neutral-400 uppercase tracking-wider block">Yolcular</span>
-              <button
-                type="button"
-                onClick={() => setShowPassengers(!showPassengers)}
-                className="w-full text-left text-sm text-neutral-800 focus:outline-none flex items-center gap-1"
-              >
-                {totalPassengers} Kişi{babySeat > 0 ? `, ${babySeat} Koltuk` : ''}
-                <ChevronDown className={`w-3 h-3 transition-transform ${showPassengers ? 'rotate-180' : ''}`} />
-              </button>
-            </div>
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 relative">
+            <Users className="w-5 h-5 text-gold shrink-0" />
+            <button
+              type="button"
+              onClick={() => setShowPassengers(!showPassengers)}
+              className="w-full text-left text-sm text-neutral-800 focus:outline-none flex items-center justify-between"
+            >
+              <span>{totalPassengers} Kişi{babySeat > 0 ? `, ${babySeat} Koltuk` : ''}</span>
+              <ChevronDown className={`w-4 h-4 text-neutral-400 transition-transform ${showPassengers ? 'rotate-180' : ''}`} />
+            </button>
 
             {/* Passenger Dropdown */}
             {showPassengers && (
-              <div className="absolute top-full left-0 right-0 mt-4 bg-white border border-neutral-200 rounded-2xl shadow-xl p-5 z-50 space-y-4 min-w-[280px]">
-                {/* Adults */}
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-neutral-200 rounded-xl shadow-xl p-4 z-50 space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-neutral-800 text-sm font-medium">Yetişkin</span>
+                    <span className="text-neutral-800 text-sm">Yetişkin</span>
                     <span className="text-neutral-400 text-xs block">12+ yaş</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setAdults(Math.max(1, adults - 1))}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="text-neutral-800 w-4 text-center">{adults}</span>
-                    <button
-                      type="button"
-                      onClick={() => setAdults(adults + 1)}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      +
-                    </button>
+                  <div className="flex items-center gap-2">
+                    <button type="button" onClick={() => setAdults(Math.max(1, adults - 1))} className="w-7 h-7 border rounded-full text-sm">-</button>
+                    <span className="w-4 text-center text-sm">{adults}</span>
+                    <button type="button" onClick={() => setAdults(adults + 1)} className="w-7 h-7 border rounded-full text-sm">+</button>
                   </div>
                 </div>
-
-                {/* Children */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-neutral-800 text-sm font-medium">Çocuk</span>
+                    <span className="text-neutral-800 text-sm">Çocuk</span>
                     <span className="text-neutral-400 text-xs block">2-11 yaş</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setChildren(Math.max(0, children - 1))}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="text-neutral-800 w-4 text-center">{children}</span>
-                    <button
-                      type="button"
-                      onClick={() => setChildren(children + 1)}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      +
-                    </button>
+                  <div className="flex items-center gap-2">
+                    <button type="button" onClick={() => setChildren(Math.max(0, children - 1))} className="w-7 h-7 border rounded-full text-sm">-</button>
+                    <span className="w-4 text-center text-sm">{children}</span>
+                    <button type="button" onClick={() => setChildren(children + 1)} className="w-7 h-7 border rounded-full text-sm">+</button>
                   </div>
                 </div>
-
-                {/* Infants */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-neutral-800 text-sm font-medium">Bebek</span>
+                    <span className="text-neutral-800 text-sm">Bebek</span>
                     <span className="text-neutral-400 text-xs block">0-2 yaş</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setInfants(Math.max(0, infants - 1))}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="text-neutral-800 w-4 text-center">{infants}</span>
-                    <button
-                      type="button"
-                      onClick={() => setInfants(infants + 1)}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      +
-                    </button>
+                  <div className="flex items-center gap-2">
+                    <button type="button" onClick={() => setInfants(Math.max(0, infants - 1))} className="w-7 h-7 border rounded-full text-sm">-</button>
+                    <span className="w-4 text-center text-sm">{infants}</span>
+                    <button type="button" onClick={() => setInfants(infants + 1)} className="w-7 h-7 border rounded-full text-sm">+</button>
                   </div>
                 </div>
-
-                {/* Baby Seat */}
-                <div className="flex items-center justify-between border-t border-neutral-100 pt-4">
+                <div className="flex items-center justify-between pt-2 border-t">
                   <div className="flex items-center gap-2">
                     <Baby className="w-4 h-4 text-gold" />
-                    <span className="text-neutral-800 text-sm font-medium">Bebek Koltuğu</span>
+                    <span className="text-neutral-800 text-sm">Bebek Koltuğu</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setBabySeat(Math.max(0, babySeat - 1))}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="text-neutral-800 w-4 text-center">{babySeat}</span>
-                    <button
-                      type="button"
-                      onClick={() => setBabySeat(babySeat + 1)}
-                      className="w-8 h-8 border border-neutral-300 text-neutral-600 rounded-full hover:border-neutral-400 transition-colors flex items-center justify-center"
-                    >
-                      +
-                    </button>
+                  <div className="flex items-center gap-2">
+                    <button type="button" onClick={() => setBabySeat(Math.max(0, babySeat - 1))} className="w-7 h-7 border rounded-full text-sm">-</button>
+                    <span className="w-4 text-center text-sm">{babySeat}</span>
+                    <button type="button" onClick={() => setBabySeat(babySeat + 1)} className="w-7 h-7 border rounded-full text-sm">+</button>
                   </div>
                 </div>
               </div>
@@ -239,10 +165,9 @@ export function Hero() {
           {/* Search Button */}
           <button
             onClick={handleSearch}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 md:px-8 py-3 md:py-4 rounded-full transition-colors flex items-center justify-center gap-2 shrink-0"
+            className="bg-gold hover:bg-gold/90 text-black font-medium px-6 py-3 rounded-xl md:rounded-full transition-colors flex items-center justify-center gap-2 shrink-0"
           >
             <span>Ara</span>
-            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
