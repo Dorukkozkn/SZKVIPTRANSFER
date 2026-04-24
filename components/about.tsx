@@ -65,25 +65,7 @@ export function About() {
           </div>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-neutral-200">
-          <div>
-            <span className="text-4xl md:text-5xl font-serif text-gold">500+</span>
-            <p className="text-muted-foreground mt-2">Mutlu Müşteri</p>
-          </div>
-          <div>
-            <span className="text-4xl md:text-5xl font-serif text-gold">50+</span>
-            <p className="text-muted-foreground mt-2">Lüks Araç</p>
-          </div>
-          <div>
-            <span className="text-4xl md:text-5xl font-serif text-gold">15K+</span>
-            <p className="text-muted-foreground mt-2">Tamamlanan Transfer</p>
-          </div>
-          <div>
-            <span className="text-4xl md:text-5xl font-serif text-gold">7/24</span>
-            <p className="text-muted-foreground mt-2">Hizmetinizdeyiz</p>
-          </div>
-        </div>
+
       </div>
     </section>
   )
