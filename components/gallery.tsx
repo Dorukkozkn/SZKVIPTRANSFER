@@ -1,78 +1,123 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
-const antalyaImages = [
+const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=600&fit=crop",
-    alt: "Antalya Kaleiçi"
+    src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop",
+    alt: "Lüks Otobüs Filosu"
   },
   {
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=600&fit=crop",
-    alt: "Antalya Sahil"
+    src: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
+    alt: "Mercedes S-Class"
   },
   {
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop",
-    alt: "Antalya Otel"
+    src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+    alt: "Mercedes V-Class"
   },
   {
-    src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200&h=600&fit=crop",
-    alt: "Antalya Lüks Otel"
+    src: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+    alt: "BMW 7 Serisi"
   },
   {
-    src: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&h=600&fit=crop",
-    alt: "Antalya Resort"
+    src: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&h=600&fit=crop",
+    alt: "Mercedes Sprinter VIP"
   },
   {
-    src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=600&fit=crop",
-    alt: "Antalya Tatil"
+    src: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
+    alt: "Antalya Transfer"
   }
 ]
 
 export function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  const maxIndex = galleryImages.length - 3
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }, [maxIndex])
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+  }
 
   useEffect(() => {
+    if (!isAutoPlaying) return
+    
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % antalyaImages.length)
+      nextSlide()
     }, 2000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isAutoPlaying, nextSlide])
+
+  const visibleImages = galleryImages.slice(currentIndex, currentIndex + 3)
+  
+  // Handle wrap-around for last items
+  const displayImages = visibleImages.length < 3 
+    ? [...visibleImages, ...galleryImages.slice(0, 3 - visibleImages.length)]
+    : visibleImages
 
   return (
-    <section className="py-16 md:py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 mb-10">
-        <span className="text-gold text-sm tracking-[0.2em] uppercase mb-4 block">
-          Antalya
-        </span>
-        <h2 className="text-3xl md:text-4xl font-serif text-foreground">
-          Eşsiz Destinasyonlar
-        </h2>
-      </div>
+    <section className="py-20 md:py-28 bg-neutral-100">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="text-gold text-sm tracking-[0.2em] uppercase mb-4 block">
+            Galeri
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground">
+            Filomuzdan Kareler
+          </h2>
+        </div>
 
-      {/* Sliding Gallery */}
-      <div className="relative w-full">
+        {/* Gallery Container */}
         <div 
-          className="flex transition-transform duration-700 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          className="relative"
+          onMouseEnter={() => setIsAutoPlaying(false)}
+          onMouseLeave={() => setIsAutoPlaying(true)}
         >
-          {antalyaImages.map((image, index) => (
-            <div key={index} className="min-w-full">
-              <div className="aspect-[21/9] md:aspect-[3/1]">
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110"
+            aria-label="Önceki"
+          >
+            <ChevronLeft className="w-6 h-6 text-neutral-700" />
+          </button>
+
+          {/* Images */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {displayImages.map((image, index) => (
+              <div
+                key={`${currentIndex}-${index}`}
+                className="aspect-[4/3] overflow-hidden rounded-2xl shadow-lg"
+              >
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110"
+            aria-label="Sonraki"
+          >
+            <ChevronRight className="w-6 h-6 text-neutral-700" />
+          </button>
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center gap-2 mt-6">
-          {antalyaImages.map((_, index) => (
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
@@ -81,7 +126,7 @@ export function Gallery() {
                   ? 'bg-gold w-6' 
                   : 'bg-neutral-300 hover:bg-neutral-400'
               }`}
-              aria-label={`Fotoğraf ${index + 1}`}
+              aria-label={`Sayfa ${index + 1}`}
             />
           ))}
         </div>

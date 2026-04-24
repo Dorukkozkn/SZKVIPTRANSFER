@@ -1,5 +1,4 @@
 import { Navbar } from "@/components/navbar"
-import { Booking } from "@/components/booking"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Fleet } from "@/components/fleet"
@@ -12,7 +11,6 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <Booking />
       <Hero />
       <About />
       <Fleet />
