@@ -9,23 +9,23 @@ const galleryImages = [
     alt: "antakla1432"
   },
   {
-    src: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
+    src: "https://cdn.sanity.io/images/nxpteyfv/goguides/7da3e0d858268e0c7395f471a02a0067bed0c33f-1600x1066.jpg",
     alt: "antakla14"
   },
   {
-    src: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+    src: "https://www.villanizburada.com/assets/images/blog/big/side_antik_kenti_drone_cekim_manzarasi.jpg",
     alt: "antakla1"
   },
   {
-    src: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+    src: "https://content.skyscnr.com/m/02050fae0e05eb3b/original/GettyImages-186915211_doc.jpg?resize=1224%3Aauto",
     alt: "antakla121321"
   },
   {
-    src: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&h=600&fit=crop",
+    src: "https://gezimanya.com/sites/default/files/styles/800x600_/public/gezilecek-yerler/2019-12/antalya-kaleici-1024x640.jpg",
     alt: "antakla1341"
   },
   {
-    src: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
+    src: "https://www.thelandoflegends.com/ee244d9090c23c4c27d12c00baf12f3e/1/page/117/antalya-gezilecek-yerler-ve-aktiviteler-181.webp?w=1280",
     alt: "antakla1ds"
   }
 ]
