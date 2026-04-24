@@ -22,47 +22,44 @@ const vehicles = [
   },
   {
     id: 3,
-    name: "Mercedes-Benz Sprinter",
-    category: "Minibüs",
+    name: "Mercedes-Benz Sprinter VIP",
+    category: "VIP+",
     image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&h=400&fit=crop",
-    capacity: "16 Kişi",
-    features: ["Konfor Koltuk", "Klima", "Wi-Fi", "TV"],
+    capacity: "8 Kişi",
+    features: ["VIP Koltuk", "Klima", "Wi-Fi", "Mini Bar"],
   },
   {
     id: 4,
-    name: "Mercedes-Benz Tourismo",
-    category: "Otobüs",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&h=400&fit=crop",
-    capacity: "46 Kişi",
-    features: ["Konfor Koltuk", "Klima", "Wi-Fi", "Tuvalet"],
+    name: "Mercedes-Benz V-Class Long",
+    category: "VIP+",
+    image: "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=600&h=400&fit=crop",
+    capacity: "6 Kişi",
+    features: ["VIP Koltuk", "Klima", "Wi-Fi", "Masaj"],
   },
   {
     id: 5,
-    name: "BMW 7 Series",
-    category: "VIP",
+    name: "Mercedes-Maybach S-Class",
+    category: "Ultra VIP",
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&h=400&fit=crop",
     capacity: "3 Kişi",
-    features: ["Deri Koltuk", "Klima", "Wi-Fi", "Masaj"],
+    features: ["Executive Koltuk", "Klima", "Wi-Fi", "Şampanya"],
   },
   {
     id: 6,
-    name: "Volkswagen Caravelle",
-    category: "Minibüs",
-    image: "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=600&h=400&fit=crop",
-    capacity: "8 Kişi",
-    features: ["Konfor Koltuk", "Klima", "Wi-Fi", "USB Şarj"],
+    name: "Rolls-Royce Phantom",
+    category: "Ultra VIP",
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&h=400&fit=crop",
+    capacity: "3 Kişi",
+    features: ["Lüks Deri", "Klima", "Wi-Fi", "Özel Hizmet"],
   },
 ]
 
-const categories = ["Tümü", "VIP", "Minibüs", "Otobüs"]
+const categories = ["VIP", "VIP+", "Ultra VIP"]
 
 export function Fleet() {
-  const [activeCategory, setActiveCategory] = useState("Tümü")
+  const [activeCategory, setActiveCategory] = useState("VIP")
 
-  const filteredVehicles =
-    activeCategory === "Tümü"
-      ? vehicles
-      : vehicles.filter((v) => v.category === activeCategory)
+  const filteredVehicles = vehicles.filter((v) => v.category === activeCategory)
 
   return (
     <section id="filomuz" className="py-24 bg-white">
