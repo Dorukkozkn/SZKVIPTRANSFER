@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop",
+    src: "https://blog.obilet.com/wp-content/uploads/2021/11/anagorsel-min-scaled.jpeg",
     alt: "antakla1432"
   },
   {
@@ -122,8 +122,8 @@ export function Gallery() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === index
-                  ? 'bg-gold w-6'
-                  : 'bg-neutral-300 hover:bg-neutral-400'
+                ? 'bg-gold w-6'
+                : 'bg-neutral-300 hover:bg-neutral-400'
                 }`}
               aria-label={`Sayfa ${index + 1}`}
             />
