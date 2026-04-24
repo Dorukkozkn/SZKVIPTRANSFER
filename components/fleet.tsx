@@ -17,7 +17,7 @@ interface Vehicle {
 const vehicles: Vehicle[] = [
   {
     id: 1,
-    name: "Mercedes-Benz S-Class",
+    name: "Mercedes-Benz Vito",
     category: "VIP",
     image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop",
     capacity: "3 Kişi",
@@ -37,7 +37,7 @@ const vehicles: Vehicle[] = [
   },
   {
     id: 3,
-    name: "Mercedes-Benz Sprinter VIP",
+    name: "Mercedes-Benz Vito",
     category: "VIP+",
     image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&h=500&fit=crop",
     capacity: "8 Kişi",
@@ -57,7 +57,7 @@ const vehicles: Vehicle[] = [
   },
   {
     id: 5,
-    name: "Mercedes-Maybach S-Class",
+    name: "Mercedes-Benz Vito",
     category: "Ultra VIP",
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop",
     capacity: "3 Kişi",
@@ -104,11 +104,10 @@ export function Fleet() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-4 md:px-6 py-2 rounded-full text-sm md:text-base transition-all duration-300 ${
-                    activeCategory === category
+                  className={`px-4 md:px-6 py-2 rounded-full text-sm md:text-base transition-all duration-300 ${activeCategory === category
                       ? "bg-foreground text-white"
                       : "text-neutral-500 hover:text-foreground"
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
@@ -167,11 +166,11 @@ export function Fleet() {
 
       {/* Vehicle Detail Popup */}
       {selectedVehicle && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={() => setSelectedVehicle(null)}
         >
-          <div 
+          <div
             className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
