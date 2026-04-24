@@ -21,17 +21,17 @@ export function About() {
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                Tecrübenin ve sürekli gelişimin yol haritasıyla, her zaman doğru yönde 
+                Tecrübenin ve sürekli gelişimin yol haritasıyla, her zaman doğru yönde
                 olduğunuzu bilmektir...
               </p>
-              
+
               <p>
-                SZKVIPTRANSFER; sektöründe yıllardır edindiği deneyimle, yolculuğa anlam katmak, 
+                SZKVIPTRANSFER; sektöründe yıllardır edindiği deneyimle, yolculuğa anlam katmak,
                 taşımacılıkta değer yaratmak üzere yola çıktı...
               </p>
-              
+
               <p>
-                Ve sürekli gelişim ilkesiyle, her geçen gün, hizmeti, daha anlamlı 
+                Ve sürekli gelişim ilkesiyle, her geçen gün, hizmeti, daha anlamlı
                 kılmak için yol alıyor...
               </p>
             </div>
@@ -45,9 +45,9 @@ export function About() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed pt-4">
               <p>
-                SZKVIPTRANSFER; turizm, organizasyon, filo ve premium taşımacılık alanlarında, 
-                özellikle nitelikli insan kaynakları ve prestijle konforu birarada sunan 
-                ar-ge ve inovasyon yatırımlarıyla, sizi koşulsuz memnuniyet odaklı 
+                SZKVIPTRANSFER; turizm, organizasyon, filo ve premium taşımacılık alanlarında,
+                özellikle nitelikli insan kaynakları ve prestijle konforu birarada sunan
+                ar-ge ve inovasyon yatırımlarıyla, sizi koşulsuz memnuniyet odaklı
                 bir yolculuğa davet ediyor.
               </p>
             </div>
@@ -57,7 +57,7 @@ export function About() {
           <div className="relative">
             <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
               <img
-                src="https://images.unsplash.com/photo-1449965408869-eujcb170f0eb?w=800&h=1000&fit=crop"
+                src="https://i.ibb.co/fzVg5Bmz/Whats-App-mage-2026-04-07-at-22-43-46.jpg"
                 alt="SZKVIPTRANSFER Merkez"
                 className="w-full h-full object-cover"
               />
