@@ -49,7 +49,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 md:px-6 max-w-5xl mx-auto pt-24 md:pt-32 pb-8 md:pb-16">
-        <span className="text-gold text-sm md:text-base tracking-[0.3em] uppercase mb-4 block">
+        <span className="text-white text-sm md:text-base tracking-[0.3em] uppercase mb-4 block">
           Premium Transfer Hizmeti
         </span>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-6 leading-tight tracking-tight">
