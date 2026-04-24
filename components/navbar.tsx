@@ -2,7 +2,14 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Phone } from "lucide-react"
+import { Menu, X, Phone, Globe, ChevronDown } from "lucide-react"
+
+const languages = [
+  { code: "tr", label: "Turkce", flag: "🇹🇷" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "ru", label: "Русский", flag: "🇷🇺" },
+]
 
 const navLinks = [
   { href: "#anasayfa", label: "Ana Sayfa" },
@@ -13,6 +20,8 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [currentLang, setCurrentLang] = useState("tr")
+  const [showLangMenu, setShowLangMenu] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +72,39 @@ export function Navbar() {
             <Phone className="w-4 h-4" />
             <span>+90 537 959 20 75</span>
           </a>
+
+          {/* Language Selector */}
+          <div className="relative">
+            <button
+              onClick={() => setShowLangMenu(!showLangMenu)}
+              className={`flex items-center gap-1.5 text-sm transition-colors duration-500 ${
+                isScrolled ? "text-foreground/70 hover:text-foreground" : "text-white/80 hover:text-white"
+              }`}
+            >
+              <Globe className="w-4 h-4" />
+              <span>{languages.find(l => l.code === currentLang)?.flag}</span>
+              <ChevronDown className={`w-3 h-3 transition-transform ${showLangMenu ? "rotate-180" : ""}`} />
+            </button>
+            {showLangMenu && (
+              <div className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-xl border border-neutral-100 py-1 min-w-[140px]">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setCurrentLang(lang.code)
+                      setShowLangMenu(false)
+                    }}
+                    className={`w-full px-4 py-2 text-left text-sm flex items-center gap-2 hover:bg-neutral-50 transition-colors ${
+                      currentLang === lang.code ? "text-gold font-medium" : "text-neutral-700"
+                    }`}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -100,6 +142,23 @@ export function Navbar() {
               <Phone className="w-4 h-4" />
               <span>+90 537 959 20 75</span>
             </a>
+            
+            {/* Mobile Language Selector */}
+            <div className="flex items-center gap-2 pt-4 border-t border-neutral-200/20">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => setCurrentLang(lang.code)}
+                  className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
+                    currentLang === lang.code 
+                      ? "bg-gold text-black" 
+                      : isScrolled ? "bg-neutral-100 text-neutral-700" : "bg-white/10 text-white"
+                  }`}
+                >
+                  {lang.flag}
+                </button>
+              ))}
+            </div>
           </nav>
         </div>
       )}
