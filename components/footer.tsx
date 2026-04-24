@@ -1,146 +1,107 @@
 import Link from "next/link"
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+import { Phone, Mail, MapPin, Instagram, Linkedin } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-900 text-white">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div>
-            <Link href="/" className="inline-block mb-6">
-              <span className="text-2xl font-bold tracking-wider">
+    <footer className="bg-neutral-950 text-white">
+      {/* Main Footer */}
+      <div className="container mx-auto px-4 py-20">
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Brand Column */}
+          <div className="lg:col-span-5">
+            <Link href="/" className="inline-block mb-8">
+              <span className="text-3xl font-bold tracking-wider">
                 SZK<span className="text-gold">VIP</span>TRANSFER
               </span>
             </Link>
-            <p className="text-white/60 leading-relaxed mb-6">
-              Profesyonel VIP transfer ve personel taşımacılığı hizmetleri ile
-              konforlu ve güvenli seyahat deneyimi sunuyoruz.
+            <p className="text-white/50 leading-relaxed mb-8 max-w-md">
+              Premium VIP transfer hizmetleri ile konforlu, güvenli ve 
+              prestijli bir yolculuk deneyimi sunuyoruz. Her detay sizin 
+              için tasarlandı.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-colors"
+                className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-black transition-all duration-300"
+                aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-colors"
+                className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-black transition-all duration-300"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Hızlı Linkler</h4>
-            <ul className="space-y-3">
+          {/* Links Column */}
+          <div className="lg:col-span-3">
+            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+              Hızlı Erişim
+            </h4>
+            <ul className="space-y-4">
               <li>
-                <Link href="#anasayfa" className="text-white/60 hover:text-gold transition-colors">
+                <Link href="#anasayfa" className="text-white/50 hover:text-gold transition-colors inline-flex items-center gap-2 group">
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300" />
                   Ana Sayfa
                 </Link>
               </li>
               <li>
-                <Link href="#hakkimizda" className="text-white/60 hover:text-gold transition-colors">
+                <Link href="#hakkimizda" className="text-white/50 hover:text-gold transition-colors inline-flex items-center gap-2 group">
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300" />
                   Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  Hizmetler
-                </Link>
-              </li>
-              <li>
-                <Link href="#filomuz" className="text-white/60 hover:text-gold transition-colors">
+                <Link href="#filomuz" className="text-white/50 hover:text-gold transition-colors inline-flex items-center gap-2 group">
+                  <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300" />
                   Filomuz
                 </Link>
               </li>
-              <li>
-                <Link href="#referanslar" className="text-white/60 hover:text-gold transition-colors">
-                  Referanslar
-                </Link>
-              </li>
-              <li>
-                <Link href="#iletisim" className="text-white/60 hover:text-gold transition-colors">
-                  İletişim
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Hizmetlerimiz</h4>
-            <ul className="space-y-3">
+          {/* Contact Column */}
+          <div className="lg:col-span-4">
+            <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+              İletişim
+            </h4>
+            <ul className="space-y-5">
               <li>
-                <a href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  VIP Transfer
-                </a>
-              </li>
-              <li>
-                <a href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  Personel Taşımacılığı
-                </a>
-              </li>
-              <li>
-                <a href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  Havalimanı Transferi
+                <a href="tel:+905001234567" className="flex items-center gap-4 text-white/50 hover:text-white transition-colors group">
+                  <span className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-black transition-all duration-300">
+                    <Phone className="w-5 h-5" />
+                  </span>
+                  <span>
+                    <span className="block text-white/30 text-xs uppercase tracking-wider mb-1">Telefon</span>
+                    <span className="text-white">+90 500 123 45 67</span>
+                  </span>
                 </a>
               </li>
               <li>
-                <a href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  Şehirlerarası Transfer
+                <a href="mailto:info@szkviptransfer.com" className="flex items-center gap-4 text-white/50 hover:text-white transition-colors group">
+                  <span className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-black transition-all duration-300">
+                    <Mail className="w-5 h-5" />
+                  </span>
+                  <span>
+                    <span className="block text-white/30 text-xs uppercase tracking-wider mb-1">E-posta</span>
+                    <span className="text-white">info@szkviptransfer.com</span>
+                  </span>
                 </a>
               </li>
               <li>
-                <a href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  Etkinlik Taşımacılığı
-                </a>
-              </li>
-              <li>
-                <a href="#hizmetler" className="text-white/60 hover:text-gold transition-colors">
-                  Araç Kiralama
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">İletişim Bilgileri</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
-                <span className="text-white/60">
-                  Merkez Mahallesi, Atatürk Caddesi No:123
-                  Kadıköy, İstanbul
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-gold flex-shrink-0" />
-                <a href="tel:+905001234567" className="text-white/60 hover:text-gold transition-colors">
-                  +90 500 123 45 67
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-gold flex-shrink-0" />
-                <a href="mailto:info@szkviptransfer.com" className="text-white/60 hover:text-gold transition-colors">
-                  info@szkviptransfer.com
-                </a>
+                <div className="flex items-start gap-4 text-white/50">
+                  <span className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </span>
+                  <span>
+                    <span className="block text-white/30 text-xs uppercase tracking-wider mb-1">Adres</span>
+                    <span className="text-white/70">Merkez Mah. Atatürk Cad. No:123, Kadıköy, İstanbul</span>
+                  </span>
+                </div>
               </li>
             </ul>
           </div>
@@ -151,17 +112,17 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/40 text-sm">
+            <p className="text-white/30 text-sm">
               &copy; {new Date().getFullYear()} SZKVIPTRANSFER. Tüm hakları saklıdır.
             </p>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="text-white/40 hover:text-white transition-colors">
-                Gizlilik Politikası
+            <div className="flex gap-8 text-sm">
+              <a href="#" className="text-white/30 hover:text-white transition-colors">
+                Gizlilik
               </a>
-              <a href="#" className="text-white/40 hover:text-white transition-colors">
+              <a href="#" className="text-white/30 hover:text-white transition-colors">
                 Kullanım Şartları
               </a>
-              <a href="#" className="text-white/40 hover:text-white transition-colors">
+              <a href="#" className="text-white/30 hover:text-white transition-colors">
                 KVKK
               </a>
             </div>

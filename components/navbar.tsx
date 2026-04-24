@@ -7,10 +7,7 @@ import { Menu, X, Phone } from "lucide-react"
 const navLinks = [
   { href: "#anasayfa", label: "Ana Sayfa" },
   { href: "#hakkimizda", label: "Hakkımızda" },
-  { href: "#hizmetler", label: "Hizmetler" },
   { href: "#filomuz", label: "Filomuz" },
-  { href: "#referanslar", label: "Referanslar" },
-  { href: "#iletisim", label: "İletişim" },
 ]
 
 export function Navbar() {
