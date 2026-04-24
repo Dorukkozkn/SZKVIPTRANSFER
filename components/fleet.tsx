@@ -8,36 +8,42 @@ const vehicles = [
     name: "Mercedes-Benz S-Class",
     category: "VIP",
     image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop&bg=white",
+    capacity: "3 Kişi",
   },
   {
     id: 2,
     name: "Mercedes-Benz V-Class",
     category: "VIP",
     image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop&bg=white",
+    capacity: "7 Kişi",
   },
   {
     id: 3,
     name: "Mercedes-Benz Sprinter VIP",
     category: "VIP+",
     image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&h=500&fit=crop&bg=white",
+    capacity: "8 Kişi",
   },
   {
     id: 4,
     name: "Mercedes-Benz V-Class Long",
     category: "VIP+",
     image: "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&h=500&fit=crop&bg=white",
+    capacity: "6 Kişi",
   },
   {
     id: 5,
     name: "Mercedes-Maybach S-Class",
     category: "Ultra VIP",
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop&bg=white",
+    capacity: "3 Kişi",
   },
   {
     id: 6,
     name: "Rolls-Royce Phantom",
     category: "Ultra VIP",
     image: "https://images.unsplash.com/photo-1563720360137-88e2f579c6e1?w=800&h=500&fit=crop&bg=white",
+    capacity: "3 Kişi",
   },
 ]
 
@@ -52,14 +58,10 @@ export function Fleet() {
     <section id="filomuz" className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-16 md:mb-20">
-          <span className="text-foreground font-medium tracking-wide">
+        <div className="mb-14 md:mb-20">
+          <span className="text-gold text-sm tracking-[0.2em] uppercase">
             Filo
           </span>
-          <div className="flex items-baseline gap-1">
-            <span className="text-5xl md:text-6xl font-serif text-neutral-300">02</span>
-            <span className="text-neutral-400 text-lg">/04</span>
-          </div>
         </div>
 
         {/* Title and Filter Row */}
@@ -104,12 +106,15 @@ export function Fleet() {
                 />
               </div>
               
-              {/* Vehicle Name */}
+              {/* Vehicle Info */}
               <div className="flex items-center justify-between">
-                <h3 className="text-lg md:text-xl font-medium text-foreground">
-                  {vehicle.name}
-                </h3>
-                <span className="text-sm text-neutral-400">
+                <div>
+                  <h3 className="text-lg md:text-xl font-medium text-foreground">
+                    {vehicle.name}
+                  </h3>
+                  <span className="text-sm text-muted-foreground">{vehicle.capacity}</span>
+                </div>
+                <span className="text-sm text-gold font-medium">
                   {vehicle.category}
                 </span>
               </div>
