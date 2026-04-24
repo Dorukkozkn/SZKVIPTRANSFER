@@ -20,7 +20,7 @@ const vehicles: Vehicle[] = [
     name: "Mercedes-Benz Vito",
     category: "VIP",
     image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop",
-    capacity: "3 Kişi",
+    capacity: "6 Kişi",
     features: ["Deri Koltuk", "Klima", "Wi-Fi", "USB Şarj"],
     benefits: ["Profesyonel şoför", "Karşılama hizmeti", "Su ikramı"],
     exclusive: "Business class konfor ile şehir içi transferleriniz için ideal seçim.",
@@ -30,7 +30,7 @@ const vehicles: Vehicle[] = [
     name: "Mercedes-Benz V-Class",
     category: "VIP",
     image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=500&fit=crop",
-    capacity: "7 Kişi",
+    capacity: "6 Kişi",
     features: ["VIP Koltuk", "Klima", "Wi-Fi", "Mini Buzdolabı"],
     benefits: ["Geniş bagaj alanı", "Aile grupları için ideal", "Rahat yolculuk"],
     exclusive: "Grup transferleri ve aile tatilleri için mükemmel konfor.",
@@ -40,7 +40,7 @@ const vehicles: Vehicle[] = [
     name: "Mercedes-Benz Vito",
     category: "VIP+",
     image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&h=500&fit=crop",
-    capacity: "8 Kişi",
+    capacity: "6 Kişi",
     features: ["Executive Koltuk", "Klima", "Wi-Fi", "TV Ekranı"],
     benefits: ["Toplantı yapabilme", "Çalışma masası", "Premium ses sistemi"],
     exclusive: "İş toplantıları ve kurumsal transferler için tasarlandı.",
@@ -60,7 +60,7 @@ const vehicles: Vehicle[] = [
     name: "Mercedes-Benz Vito",
     category: "Ultra VIP",
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop",
-    capacity: "3 Kişi",
+    capacity: "6 Kişi",
     features: ["First Class Koltuk", "Klima", "Wi-Fi", "Buzdolabı"],
     benefits: ["Özel şoför", "7/24 concierge", "Havalimanı VIP karşılama"],
     exclusive: "Dünyanın en lüks sedanı ile unutulmaz bir deneyim.",
@@ -70,7 +70,7 @@ const vehicles: Vehicle[] = [
     name: "Rolls-Royce Phantom",
     category: "Ultra VIP",
     image: "https://images.unsplash.com/photo-1563720360137-88e2f579c6e1?w=800&h=500&fit=crop",
-    capacity: "3 Kişi",
+    capacity: "6 Kişi",
     features: ["Starlight Tavan", "Klima", "Wi-Fi", "Özel İçecek Servisi"],
     benefits: ["Kırmızı halı karşılama", "Fotoğraf çekimi", "Özel güzergah"],
     exclusive: "Kraliyet ailesinin tercihi. Mutlak lüks ve prestij.",
@@ -105,8 +105,8 @@ export function Fleet() {
                   key={category}
                   onClick={() => setActiveCategory(category)}
                   className={`px-4 md:px-6 py-2 rounded-full text-sm md:text-base transition-all duration-300 ${activeCategory === category
-                      ? "bg-foreground text-white"
-                      : "text-neutral-500 hover:text-foreground"
+                    ? "bg-foreground text-white"
+                    : "text-neutral-500 hover:text-foreground"
                     }`}
                 >
                   {category}
