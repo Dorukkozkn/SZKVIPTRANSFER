@@ -112,10 +112,13 @@ export function Hero() {
 
     return (
       <div className="space-y-3">
-        <p className="text-sm font-semibold text-neutral-900">{title} Bilgileri</p>
+        <h4 className="text-sm font-semibold text-neutral-900">{title} Bilgileri</h4>
 
         {list.map((passenger, index) => (
-          <div key={`${type}-${index}`} className="grid grid-cols-1 gap-2">
+          <div
+            key={`${type}-${index}`}
+            className="rounded-2xl border border-neutral-200 bg-neutral-50 p-3 space-y-2"
+          >
             <input
               type="text"
               value={passenger.fullName}
@@ -123,7 +126,7 @@ export function Hero() {
                 updatePassengerInfo(type, index, "fullName", e.target.value)
               }
               placeholder={`${index + 1}. yolcu isim soyisim`}
-              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 outline-none"
+              className="w-full rounded-xl bg-white border border-neutral-200 px-3 py-2.5 text-sm text-neutral-800 outline-none focus:border-gold"
             />
 
             <select
@@ -131,7 +134,7 @@ export function Hero() {
               onChange={(e) =>
                 updatePassengerInfo(type, index, "gender", e.target.value)
               }
-              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 outline-none bg-white"
+              className="w-full rounded-xl bg-white border border-neutral-200 px-3 py-2.5 text-sm text-neutral-800 outline-none focus:border-gold"
             >
               <option value="">Cinsiyet seçiniz</option>
               <option value="Kadın">Kadın</option>
@@ -180,72 +183,72 @@ Para Birimi: ${selectedCurrency}`
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-visible">
-      <div className="absolute inset-0 z-0">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-visible px-4 py-24">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tzoo.13733.0.1135660.iStock-821804760-1-antalya-QJTkPkfLVAnAYOU5EzyfxlLvhDZR5C.jpg"
           className="w-full h-full object-cover"
           alt="Antalya"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/55" />
       </div>
 
-      <div className="relative z-20 text-center px-4 max-w-7xl mx-auto">
-        <h1 className="text-5xl text-white mb-2">
+      <div className="relative z-20 text-center w-full max-w-7xl mx-auto">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl text-white mb-3 font-serif">
           Lüks Ulaşımın <span className="text-gold">Yeni Adresi</span>
         </h1>
 
-        <p className="text-white text-sm md:text-base tracking-[0.5em] uppercase mb-8">
+        <p className="text-white/90 text-xs md:text-base tracking-[0.35em] md:tracking-[0.6em] uppercase mb-8">
           SZKVIPTRANSFER
         </p>
 
-        <div className="relative bg-white rounded-full shadow-2xl p-2 flex items-center gap-2 overflow-visible">
-          <div className="flex-1 flex items-center gap-2 px-4">
-            <MapPin className="w-4 h-4 text-gold" />
+        <div className="relative bg-white rounded-3xl md:rounded-full shadow-2xl p-3 flex flex-col lg:flex-row items-stretch gap-3 lg:gap-0 overflow-visible">
+          <div className="flex-1 flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={from}
               onChange={(e) => setFrom(e.target.value)}
               placeholder="Nereden?"
-              className="w-full outline-none text-sm"
+              className="w-full outline-none text-sm text-neutral-800"
             />
           </div>
 
-          <div className="flex-1 flex items-center gap-2 px-4 border-l">
-            <MapPin className="w-4 h-4 text-gold" />
+          <div className="flex-1 flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={to}
               onChange={(e) => setTo(e.target.value)}
               placeholder="Nereye?"
-              className="w-full outline-none text-sm"
+              className="w-full outline-none text-sm text-neutral-800"
             />
           </div>
 
-          <div className="flex items-center gap-2 px-4 border-l">
-            <Calendar className="w-4 h-4 text-gold" />
+          <div className="flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <Calendar className="w-5 h-5 text-gold shrink-0" />
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="outline-none text-sm"
+              className="w-full outline-none text-sm text-neutral-800 bg-transparent"
             />
           </div>
 
-          <div className="flex items-center gap-2 px-4 border-l">
-            <Clock className="w-4 h-4 text-gold" />
+          <div className="flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <Clock className="w-5 h-5 text-gold shrink-0" />
             <input
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="outline-none text-sm"
+              className="w-full outline-none text-sm text-neutral-800 bg-transparent"
             />
           </div>
 
-          <div className="flex items-center gap-2 px-4 border-l">
-            <Wallet className="w-4 h-4 text-gold" />
+          <div className="flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <Wallet className="w-5 h-5 text-gold shrink-0" />
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
-              className="outline-none text-sm bg-transparent"
+              className="w-full outline-none text-sm text-neutral-800 bg-transparent"
             >
               {currencies.map((c) => (
                 <option key={c.value} value={c.value}>
@@ -255,81 +258,100 @@ Para Birimi: ${selectedCurrency}`
             </select>
           </div>
 
-          <div className="relative flex items-center gap-2 px-4 border-l">
-            <Users className="w-4 h-4 text-gold" />
+          <div className="relative flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <Users className="w-5 h-5 text-gold shrink-0" />
 
             <button
               type="button"
               onClick={() => setShowPassengers(!showPassengers)}
-              className="text-sm"
+              className="w-full text-left text-sm text-neutral-800"
             >
               {totalPassengers} Kişi
+              {babySeat > 0 ? `, ${babySeat} Koltuk` : ""}
             </button>
 
             {showPassengers && (
-              <div className="absolute top-full right-0 mt-3 w-[760px] max-w-[calc(100vw-32px)] bg-white shadow-xl rounded-xl p-5 z-50 text-left">
-                <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-6">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Yetişkin</span>
-                      <div className="flex gap-2">
-                        <button type="button" onClick={() => updatePassengerCount("adult", adults - 1)}>
-                          -
-                        </button>
-                        <span>{adults}</span>
-                        <button type="button" onClick={() => updatePassengerCount("adult", adults + 1)}>
-                          +
-                        </button>
+              <div className="absolute top-full right-0 mt-4 w-[860px] max-w-[calc(100vw-32px)] bg-white rounded-3xl shadow-2xl border border-neutral-200 z-50 text-left overflow-hidden">
+                <div className="max-h-[75vh] overflow-y-auto p-4 md:p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5 md:gap-7">
+                    <div className="space-y-3">
+                      {[
+                        ["Yetişkin", "12+ yaş", adults, "adult"],
+                        ["Çocuk", "2-11 yaş", children, "child"],
+                        ["Bebek", "0-2 yaş", infants, "infant"],
+                      ].map(([label, age, count, type]: any) => (
+                        <div
+                          key={label}
+                          className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4 flex items-center justify-between"
+                        >
+                          <div>
+                            <p className="text-sm font-semibold text-neutral-900">
+                              {label}
+                            </p>
+                            <p className="text-xs text-neutral-500">{age}</p>
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                updatePassengerCount(type, count - 1)
+                              }
+                              className="w-9 h-9 rounded-full bg-white border border-neutral-200 text-neutral-700"
+                            >
+                              -
+                            </button>
+                            <span className="w-5 text-center text-sm font-semibold text-neutral-900">
+                              {count}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                updatePassengerCount(type, count + 1)
+                              }
+                              className="w-9 h-9 rounded-full bg-neutral-900 text-white"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+
+                      <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Baby className="w-4 h-4 text-gold" />
+                          <p className="text-sm font-semibold text-neutral-900">
+                            Bebek Koltuğu
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() => setBabySeat(Math.max(0, babySeat - 1))}
+                            className="w-9 h-9 rounded-full bg-white border border-neutral-200 text-neutral-700"
+                          >
+                            -
+                          </button>
+                          <span className="w-5 text-center text-sm font-semibold text-neutral-900">
+                            {babySeat}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setBabySeat(babySeat + 1)}
+                            className="w-9 h-9 rounded-full bg-neutral-900 text-white"
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex justify-between items-center">
-                      <span>Çocuk</span>
-                      <div className="flex gap-2">
-                        <button type="button" onClick={() => updatePassengerCount("child", children - 1)}>
-                          -
-                        </button>
-                        <span>{children}</span>
-                        <button type="button" onClick={() => updatePassengerCount("child", children + 1)}>
-                          +
-                        </button>
-                      </div>
+                    <div className="space-y-5">
+                      {renderPassengerInputs("Yetişkin", "adult", adultInfos)}
+                      {renderPassengerInputs("Çocuk", "child", childInfos)}
+                      {renderPassengerInputs("Bebek", "infant", infantInfos)}
                     </div>
-
-                    <div className="flex justify-between items-center">
-                      <span>Bebek</span>
-                      <div className="flex gap-2">
-                        <button type="button" onClick={() => updatePassengerCount("infant", infants - 1)}>
-                          -
-                        </button>
-                        <span>{infants}</span>
-                        <button type="button" onClick={() => updatePassengerCount("infant", infants + 1)}>
-                          +
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between items-center border-t pt-3">
-                      <span className="flex items-center gap-2">
-                        <Baby className="w-4 h-4 text-gold" />
-                        Bebek Koltuğu
-                      </span>
-                      <div className="flex gap-2">
-                        <button type="button" onClick={() => setBabySeat(Math.max(0, babySeat - 1))}>
-                          -
-                        </button>
-                        <span>{babySeat}</span>
-                        <button type="button" onClick={() => setBabySeat(babySeat + 1)}>
-                          +
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-5 max-h-[420px] overflow-y-auto pr-1">
-                    {renderPassengerInputs("Yetişkin", "adult", adultInfos)}
-                    {renderPassengerInputs("Çocuk", "child", childInfos)}
-                    {renderPassengerInputs("Bebek", "infant", infantInfos)}
                   </div>
                 </div>
               </div>
@@ -339,7 +361,7 @@ Para Birimi: ${selectedCurrency}`
           <button
             type="button"
             onClick={handleSearch}
-            className="bg-gold text-black px-6 py-2 rounded-full"
+            className="bg-gold hover:bg-gold/90 text-black font-semibold px-8 py-4 rounded-2xl lg:rounded-full transition-colors"
           >
             Randevu
           </button>
