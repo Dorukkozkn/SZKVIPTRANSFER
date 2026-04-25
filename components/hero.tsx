@@ -8,6 +8,7 @@ import {
   Users,
   Baby,
   Wallet,
+  Clock,
 } from "lucide-react"
 
 type Gender = "Kadın" | "Erkek" | ""
@@ -29,6 +30,7 @@ export function Hero() {
   const [from, setFrom] = useState("")
   const [to, setTo] = useState("")
   const [date, setDate] = useState("")
+  const [time, setTime] = useState("")
   const [currency, setCurrency] = useState("EUR")
 
   const [showPassengers, setShowPassengers] = useState(false)
@@ -37,13 +39,13 @@ export function Hero() {
   const [infants, setInfants] = useState(0)
   const [babySeat, setBabySeat] = useState(0)
 
-  const totalPassengers = adults + children + infants
-
   const [adultInfos, setAdultInfos] = useState<PassengerInfo[]>([
     { fullName: "", gender: "" },
   ])
   const [childInfos, setChildInfos] = useState<PassengerInfo[]>([])
   const [infantInfos, setInfantInfos] = useState<PassengerInfo[]>([])
+
+  const totalPassengers = adults + children + infants
 
   const formatDateTR = (value: string) => {
     if (!value) return new Date().toLocaleDateString("tr-TR")
@@ -56,7 +58,7 @@ export function Hero() {
     type: "adult" | "child" | "infant",
     value: number
   ) => {
-    const emptyPassenger = { fullName: "", gender: "" as Gender }
+    const emptyPassenger: PassengerInfo = { fullName: "", gender: "" }
 
     if (type === "adult") {
       const safeValue = Math.max(1, value)
@@ -98,7 +100,7 @@ export function Hero() {
 
     setter((prev) =>
       prev.map((item, i) =>
-        i === index ? { ...item, [field]: value } : item
+        i === index ? { ...item, [field]: value as Gender } : item
       )
     )
   }
@@ -111,11 +113,16 @@ export function Hero() {
     if (list.length === 0) return null
 
     return (
-      <div className="space-y-3 pt-3 border-t">
-        <p className="text-sm font-medium text-neutral-800">{title} Bilgileri</p>
+      <div className="space-y-3 pt-4 border-t border-neutral-200">
+        <p className="text-sm font-semibold text-neutral-800">
+          {title} Bilgileri
+        </p>
 
         {list.map((passenger, index) => (
-          <div key={`${type}-${index}`} className="grid grid-cols-1 gap-2">
+          <div
+            key={`${type}-${index}`}
+            className="grid grid-cols-1 md:grid-cols-2 gap-2"
+          >
             <input
               type="text"
               value={passenger.fullName}
@@ -123,7 +130,7 @@ export function Hero() {
                 updatePassengerInfo(type, index, "fullName", e.target.value)
               }
               placeholder={`${index + 1}. yolcu isim soyisim`}
-              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:border-gold bg-white"
             />
 
             <select
@@ -131,9 +138,9 @@ export function Hero() {
               onChange={(e) =>
                 updatePassengerInfo(type, index, "gender", e.target.value)
               }
-              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 focus:outline-none bg-white"
+              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:border-gold bg-white"
             >
-              <option value="">Cinsiyet seçiniz</option>
+              <option value="">Cinsiyet</option>
               <option value="Kadın">Kadın</option>
               <option value="Erkek">Erkek</option>
             </select>
@@ -143,10 +150,7 @@ export function Hero() {
     )
   }
 
-  const passengersToText = (
-    title: string,
-    list: PassengerInfo[]
-  ) => {
+  const passengersToText = (title: string, list: PassengerInfo[]) => {
     if (list.length === 0) return ""
 
     return `\n${title}:\n${list
@@ -161,10 +165,13 @@ export function Hero() {
 
   const handleSearch = () => {
     const formattedDate = formatDateTR(date)
-    const formattedTime = new Date().toLocaleTimeString("tr-TR", {
-      hour: "2-digit",
-      minute: "2-digit",
-    })
+
+    const formattedTime =
+      time ||
+      new Date().toLocaleTimeString("tr-TR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
 
     const selectedCurrency =
       currencies.find((item) => item.value === currency)?.label || currency
@@ -205,7 +212,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative z-10 text-center px-4 md:px-6 max-w-6xl mx-auto pt-24 md:pt-32 pb-8 md:pb-16">
+      <div className="relative z-10 text-center px-4 md:px-6 max-w-7xl mx-auto pt-24 md:pt-32 pb-8 md:pb-16">
         <span className="text-white text-sm md:text-base tracking-[0.3em] uppercase mb-4 block">
           Premium Transfer Hizmeti
         </span>
@@ -218,7 +225,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
           Konfor, güvenlik ve prestij bir arada. Her yolculuğunuz özel.
         </p>
 
-        <div className="bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-6xl mx-auto">
+        <div className="bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-7xl mx-auto">
           <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
@@ -252,6 +259,16 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
           </div>
 
           <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
+            <Clock className="w-5 h-5 text-gold shrink-0" />
+            <input
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="w-full text-sm text-neutral-800 focus:outline-none bg-transparent"
+            />
+          </div>
+
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
             <Wallet className="w-5 h-5 text-gold shrink-0" />
             <select
               value={currency}
@@ -268,6 +285,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
 
           <div className="flex-1 flex items-center gap-3 px-4 py-2 relative">
             <Users className="w-5 h-5 text-gold shrink-0" />
+
             <button
               type="button"
               onClick={() => setShowPassengers(!showPassengers)}
@@ -277,6 +295,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
                 {totalPassengers} Kişi
                 {babySeat > 0 ? `, ${babySeat} Koltuk` : ""}
               </span>
+
               <ChevronDown
                 className={`w-4 h-4 text-neutral-400 transition-transform ${
                   showPassengers ? "rotate-180" : ""
@@ -285,27 +304,32 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
             </button>
 
             {showPassengers && (
-              <div className="absolute top-full right-0 mt-2 w-[calc(100vw-32px)] md:w-[420px] bg-white border border-neutral-200 rounded-xl shadow-xl p-4 z-50 space-y-4 max-h-[520px] overflow-y-auto">
+              <div className="absolute bottom-full right-0 mb-3 w-[calc(100vw-32px)] md:w-[460px] bg-white border border-neutral-200 rounded-2xl shadow-2xl p-5 z-[9999] space-y-4 max-h-[70vh] overflow-y-auto text-left">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-neutral-800 text-sm">Yetişkin</span>
+                    <span className="text-neutral-800 text-sm font-medium">
+                      Yetişkin
+                    </span>
                     <span className="text-neutral-400 text-xs block">
                       12+ yaş
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => updatePassengerCount("adult", adults - 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       -
                     </button>
-                    <span className="w-4 text-center text-sm">{adults}</span>
+                    <span className="w-5 text-center text-sm text-neutral-800">
+                      {adults}
+                    </span>
                     <button
                       type="button"
                       onClick={() => updatePassengerCount("adult", adults + 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       +
                     </button>
@@ -314,24 +338,29 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-neutral-800 text-sm">Çocuk</span>
+                    <span className="text-neutral-800 text-sm font-medium">
+                      Çocuk
+                    </span>
                     <span className="text-neutral-400 text-xs block">
                       2-11 yaş
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => updatePassengerCount("child", children - 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       -
                     </button>
-                    <span className="w-4 text-center text-sm">{children}</span>
+                    <span className="w-5 text-center text-sm text-neutral-800">
+                      {children}
+                    </span>
                     <button
                       type="button"
                       onClick={() => updatePassengerCount("child", children + 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       +
                     </button>
@@ -340,51 +369,58 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-neutral-800 text-sm">Bebek</span>
+                    <span className="text-neutral-800 text-sm font-medium">
+                      Bebek
+                    </span>
                     <span className="text-neutral-400 text-xs block">
                       0-2 yaş
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => updatePassengerCount("infant", infants - 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       -
                     </button>
-                    <span className="w-4 text-center text-sm">{infants}</span>
+                    <span className="w-5 text-center text-sm text-neutral-800">
+                      {infants}
+                    </span>
                     <button
                       type="button"
                       onClick={() => updatePassengerCount("infant", infants + 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       +
                     </button>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t">
+                <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
                   <div className="flex items-center gap-2">
                     <Baby className="w-4 h-4 text-gold" />
-                    <span className="text-neutral-800 text-sm">
+                    <span className="text-neutral-800 text-sm font-medium">
                       Bebek Koltuğu
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => setBabySeat(Math.max(0, babySeat - 1))}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       -
                     </button>
-                    <span className="w-4 text-center text-sm">{babySeat}</span>
+                    <span className="w-5 text-center text-sm text-neutral-800">
+                      {babySeat}
+                    </span>
                     <button
                       type="button"
                       onClick={() => setBabySeat(babySeat + 1)}
-                      className="w-7 h-7 border rounded-full text-sm"
+                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
                     >
                       +
                     </button>
@@ -400,9 +436,9 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
 
           <button
             onClick={handleSearch}
-            className="bg-gold hover:bg-gold/90 text-black font-medium px-6 py-3 rounded-xl md:rounded-full transition-colors flex items-center justify-center gap-2 shrink-0"
+            className="bg-gold hover:bg-gold/90 text-black font-medium px-8 py-3 rounded-xl md:rounded-full transition-colors flex items-center justify-center gap-2 shrink-0"
           >
-            <span>Ara</span>
+            Ara
           </button>
         </div>
       </div>
