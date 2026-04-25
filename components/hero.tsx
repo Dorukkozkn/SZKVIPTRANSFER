@@ -49,7 +49,6 @@ export function Hero() {
 
   const formatDateTR = (value: string) => {
     if (!value) return new Date().toLocaleDateString("tr-TR")
-
     const [year, month, day] = value.split("-")
     return `${day}/${month}/${year}`
   }
@@ -105,51 +104,6 @@ export function Hero() {
     )
   }
 
-  const renderPassengerInputs = (
-    title: string,
-    type: "adult" | "child" | "infant",
-    list: PassengerInfo[]
-  ) => {
-    if (list.length === 0) return null
-
-    return (
-      <div className="space-y-3 pt-4 border-t border-neutral-200">
-        <p className="text-sm font-semibold text-neutral-800">
-          {title} Bilgileri
-        </p>
-
-        {list.map((passenger, index) => (
-          <div
-            key={`${type}-${index}`}
-            className="grid grid-cols-1 md:grid-cols-2 gap-2"
-          >
-            <input
-              type="text"
-              value={passenger.fullName}
-              onChange={(e) =>
-                updatePassengerInfo(type, index, "fullName", e.target.value)
-              }
-              placeholder={`${index + 1}. yolcu isim soyisim`}
-              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:border-gold bg-white"
-            />
-
-            <select
-              value={passenger.gender}
-              onChange={(e) =>
-                updatePassengerInfo(type, index, "gender", e.target.value)
-              }
-              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:border-gold bg-white"
-            >
-              <option value="">Cinsiyet</option>
-              <option value="Kadın">Kadın</option>
-              <option value="Erkek">Erkek</option>
-            </select>
-          </div>
-        ))}
-      </div>
-    )
-  }
-
   const passengersToText = (title: string, list: PassengerInfo[]) => {
     if (list.length === 0) return ""
 
@@ -161,6 +115,51 @@ export function Hero() {
           }`
       )
       .join("\n")}`
+  }
+
+  const renderPassengerInputs = (
+    title: string,
+    type: "adult" | "child" | "infant",
+    list: PassengerInfo[]
+  ) => {
+    if (list.length === 0) return null
+
+    return (
+      <div className="space-y-3">
+        <p className="text-sm font-semibold text-neutral-900">
+          {title} Bilgileri
+        </p>
+
+        {list.map((passenger, index) => (
+          <div
+            key={`${type}-${index}`}
+            className="grid grid-cols-1 sm:grid-cols-[1fr_170px] gap-2"
+          >
+            <input
+              type="text"
+              value={passenger.fullName}
+              onChange={(e) =>
+                updatePassengerInfo(type, index, "fullName", e.target.value)
+              }
+              placeholder={`${index + 1}. yolcu isim soyisim`}
+              className="w-full rounded-lg border border-neutral-200 px-3 py-2.5 text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-gold bg-white"
+            />
+
+            <select
+              value={passenger.gender}
+              onChange={(e) =>
+                updatePassengerInfo(type, index, "gender", e.target.value)
+              }
+              className="w-full rounded-lg border border-neutral-200 px-3 py-2.5 text-sm text-neutral-800 focus:outline-none focus:border-gold bg-white"
+            >
+              <option value="">Cinsiyet</option>
+              <option value="Kadın">Kadın</option>
+              <option value="Erkek">Erkek</option>
+            </select>
+          </div>
+        ))}
+      </div>
+    )
   }
 
   const handleSearch = () => {
@@ -225,7 +224,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
           Konfor, güvenlik ve prestij bir arada. Her yolculuğunuz özel.
         </p>
 
-        <div className="bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-7xl mx-auto">
+        <div className="relative bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-7xl mx-auto overflow-visible">
           <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
@@ -304,139 +303,161 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
             </button>
 
             {showPassengers && (
-              <div className="absolute bottom-full right-0 mb-3 w-[calc(100vw-32px)] md:w-[460px] bg-white border border-neutral-200 rounded-2xl shadow-2xl p-5 z-[9999] space-y-4 max-h-[70vh] overflow-y-auto text-left">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-neutral-800 text-sm font-medium">
-                      Yetişkin
-                    </span>
-                    <span className="text-neutral-400 text-xs block">
-                      12+ yaş
-                    </span>
-                  </div>
+              <div className="absolute top-full right-0 mt-4 w-[calc(100vw-32px)] md:w-[760px] lg:w-[820px] max-w-[calc(100vw-32px)] bg-white border border-neutral-200 rounded-2xl shadow-2xl z-[9999] text-left overflow-hidden">
+                <div className="max-h-[58vh] overflow-y-auto p-5 md:p-6 space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-neutral-800 text-sm font-medium">
+                            Yetişkin
+                          </span>
+                          <span className="text-neutral-400 text-xs block">
+                            12+ yaş
+                          </span>
+                        </div>
 
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => updatePassengerCount("adult", adults - 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="w-5 text-center text-sm text-neutral-800">
-                      {adults}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => updatePassengerCount("adult", adults + 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      +
-                    </button>
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updatePassengerCount("adult", adults - 1)
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="w-5 text-center text-sm text-neutral-800">
+                            {adults}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updatePassengerCount("adult", adults + 1)
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-neutral-800 text-sm font-medium">
+                            Çocuk
+                          </span>
+                          <span className="text-neutral-400 text-xs block">
+                            2-11 yaş
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updatePassengerCount("child", children - 1)
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="w-5 text-center text-sm text-neutral-800">
+                            {children}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updatePassengerCount("child", children + 1)
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-neutral-800 text-sm font-medium">
+                            Bebek
+                          </span>
+                          <span className="text-neutral-400 text-xs block">
+                            0-2 yaş
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updatePassengerCount("infant", infants - 1)
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="w-5 text-center text-sm text-neutral-800">
+                            {infants}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updatePassengerCount("infant", infants + 1)
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+                        <div className="flex items-center gap-2">
+                          <Baby className="w-4 h-4 text-gold" />
+                          <span className="text-neutral-800 text-sm font-medium">
+                            Bebek Koltuğu
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setBabySeat(Math.max(0, babySeat - 1))
+                            }
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="w-5 text-center text-sm text-neutral-800">
+                            {babySeat}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setBabySeat(babySeat + 1)}
+                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      {renderPassengerInputs("Yetişkin", "adult", adultInfos)}
+                      {renderPassengerInputs("Çocuk", "child", childInfos)}
+                      {renderPassengerInputs("Bebek", "infant", infantInfos)}
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-neutral-800 text-sm font-medium">
-                      Çocuk
-                    </span>
-                    <span className="text-neutral-400 text-xs block">
-                      2-11 yaş
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => updatePassengerCount("child", children - 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="w-5 text-center text-sm text-neutral-800">
-                      {children}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => updatePassengerCount("child", children + 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-neutral-800 text-sm font-medium">
-                      Bebek
-                    </span>
-                    <span className="text-neutral-400 text-xs block">
-                      0-2 yaş
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => updatePassengerCount("infant", infants - 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="w-5 text-center text-sm text-neutral-800">
-                      {infants}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => updatePassengerCount("infant", infants + 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
-                  <div className="flex items-center gap-2">
-                    <Baby className="w-4 h-4 text-gold" />
-                    <span className="text-neutral-800 text-sm font-medium">
-                      Bebek Koltuğu
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setBabySeat(Math.max(0, babySeat - 1))}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      -
-                    </button>
-                    <span className="w-5 text-center text-sm text-neutral-800">
-                      {babySeat}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setBabySeat(babySeat + 1)}
-                      className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                {renderPassengerInputs("Yetişkin", "adult", adultInfos)}
-                {renderPassengerInputs("Çocuk", "child", childInfos)}
-                {renderPassengerInputs("Bebek", "infant", infantInfos)}
               </div>
             )}
           </div>
 
           <button
             onClick={handleSearch}
-            className="bg-gold hover:bg-gold/90 text-black font-medium px-8 py-3 rounded-xl md:rounded-full transition-colors flex items-center justify-center gap-2 shrink-0"
+            className="bg-gold hover:bg-gold/90 text-black font-medium px-8 py-3 rounded-xl md:rounded-full transition-colors flex items-center justify-center shrink-0"
           >
             Ara
           </button>
