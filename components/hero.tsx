@@ -80,10 +80,13 @@ Para Birimi: ${currency}`
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative z-20 text-center px-4 max-w-7xl mx-auto">
-        <h1 className="text-5xl text-white mb-8">
-          Lüks Ulaşımın <span className="text-gold">Yeni Adresi</span>
-        </h1>
+<h1 className="text-5xl text-white mb-2">
+  Lüks Ulaşımın <span className="text-gold">Yeni Adresi</span>
+</h1>
+
+<p className="text-white/70 text-lg tracking-[0.4em] mt-2">
+  SZKVIPTRANSFER
+</p>
 
         {/* SEARCH BAR */}
         <div className="relative bg-white rounded-full shadow-2xl p-2 flex items-center gap-2 overflow-visible">
