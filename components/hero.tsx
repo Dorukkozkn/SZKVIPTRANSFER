@@ -239,15 +239,24 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="w-full lg:w-[115px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
-            <Clock className="w-5 h-5 text-gold shrink-0" />
-            <input
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              className="w-full outline-none text-sm text-neutral-800 bg-transparent"
-            />
-          </div>
+          <select
+  value={time}
+  onChange={(e) => setTime(e.target.value)}
+  className="w-full outline-none text-sm text-neutral-800 bg-transparent"
+>
+  <option value="">Saat</option>
+  {Array.from({ length: 24 * 2 }, (_, i) => {
+    const hour = String(Math.floor(i / 2)).padStart(2, "0")
+    const minute = i % 2 === 0 ? "00" : "30"
+    const value = `${hour}:${minute}`
+
+    return (
+      <option key={value} value={value}>
+        {value}
+      </option>
+    )
+  })}
+</select>
 
           <div className="w-full lg:w-[115px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Wallet className="w-5 h-5 text-gold shrink-0" />
