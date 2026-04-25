@@ -1,15 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import {
-  ChevronDown,
-  MapPin,
-  Calendar,
-  Users,
-  Baby,
-  Wallet,
-  Clock,
-} from "lucide-react"
+import { ChevronDown, MapPin, Calendar, Users, Baby, Wallet, Clock } from "lucide-react"
 
 type Gender = "Kadın" | "Erkek" | ""
 
@@ -48,7 +40,7 @@ export function Hero() {
   const totalPassengers = adults + children + infants
 
   const formatDateTR = (value: string) => {
-    if (!value) return new Date().toLocaleDateString("tr-TR")
+    if (!value) return "Belirtilmedi"
     const [year, month, day] = value.split("-")
     return `${day}/${month}/${year}`
   }
@@ -133,7 +125,7 @@ export function Hero() {
         {list.map((passenger, index) => (
           <div
             key={`${type}-${index}`}
-            className="grid grid-cols-1 sm:grid-cols-[1fr_170px] gap-2"
+            className="grid grid-cols-1 sm:grid-cols-[1fr_160px] gap-2"
           >
             <input
               type="text"
@@ -164,13 +156,7 @@ export function Hero() {
 
   const handleSearch = () => {
     const formattedDate = formatDateTR(date)
-
-    const formattedTime =
-      time ||
-      new Date().toLocaleTimeString("tr-TR", {
-        hour: "2-digit",
-        minute: "2-digit",
-      })
+    const formattedTime = time || "Belirtilmedi"
 
     const selectedCurrency =
       currencies.find((item) => item.value === currency)?.label || currency
@@ -193,16 +179,18 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
 🪑 Bebek Koltuğu: ${babySeat > 0 ? `${babySeat} adet` : "Hayır"}
 💳 Ödeme Para Birimi: ${selectedCurrency}`
 
-    const encodedMessage = encodeURIComponent(message)
-    window.open(`https://wa.me/905379592075?text=${encodedMessage}`, "_blank")
+    window.open(
+      `https://wa.me/905379592075?text=${encodeURIComponent(message)}`,
+      "_blank"
+    )
   }
 
   return (
     <section
       id="anasayfa"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-visible"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tzoo.13733.0.1135660.iStock-821804760-1-antalya-QJTkPkfLVAnAYOU5EzyfxlLvhDZR5C.jpg"
           alt="Antalya"
@@ -211,7 +199,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative z-10 text-center px-4 md:px-6 max-w-7xl mx-auto pt-24 md:pt-32 pb-8 md:pb-16">
+      <div className="relative z-30 text-center px-4 md:px-6 max-w-7xl mx-auto pt-24 md:pt-32 pb-24 md:pb-32">
         <span className="text-white text-sm md:text-base tracking-[0.3em] uppercase mb-4 block">
           Premium Transfer Hizmeti
         </span>
@@ -224,7 +212,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
           Konfor, güvenlik ve prestij bir arada. Her yolculuğunuz özel.
         </p>
 
-        <div className="relative bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-7xl mx-auto overflow-visible">
+        <div className="relative bg-white rounded-2xl md:rounded-full shadow-2xl p-3 md:p-2 flex flex-col md:flex-row items-stretch gap-3 md:gap-0 max-w-7xl mx-auto overflow-visible z-50">
           <div className="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-neutral-100">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
@@ -262,6 +250,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
             <input
               type="time"
               value={time}
+              step="60"
               onChange={(e) => setTime(e.target.value)}
               className="w-full text-sm text-neutral-800 focus:outline-none bg-transparent"
             />
@@ -303,114 +292,30 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
             </button>
 
             {showPassengers && (
-              <div className="absolute top-full right-0 mt-4 w-[calc(100vw-32px)] md:w-[760px] lg:w-[820px] max-w-[calc(100vw-32px)] bg-white border border-neutral-200 rounded-2xl shadow-2xl z-[9999] text-left overflow-hidden">
-                <div className="max-h-[58vh] overflow-y-auto p-5 md:p-6 space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="absolute top-[calc(100%+14px)] right-0 w-[820px] max-w-[calc(100vw-32px)] bg-white border border-neutral-200 rounded-2xl shadow-2xl z-[99999] text-left overflow-hidden">
+                <div className="absolute -top-2 right-10 w-4 h-4 bg-white border-l border-t border-neutral-200 rotate-45" />
+
+                <div className="max-h-[430px] overflow-y-auto p-6 space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-neutral-800 text-sm font-medium">
-                            Yetişkin
-                          </span>
-                          <span className="text-neutral-400 text-xs block">
-                            12+ yaş
-                          </span>
-                        </div>
+                      {[
+                        ["Yetişkin", "12+ yaş", adults, () => updatePassengerCount("adult", adults - 1), () => updatePassengerCount("adult", adults + 1)],
+                        ["Çocuk", "2-11 yaş", children, () => updatePassengerCount("child", children - 1), () => updatePassengerCount("child", children + 1)],
+                        ["Bebek", "0-2 yaş", infants, () => updatePassengerCount("infant", infants - 1), () => updatePassengerCount("infant", infants + 1)],
+                      ].map(([label, age, count, minus, plus]: any) => (
+                        <div key={label} className="flex items-center justify-between">
+                          <div>
+                            <span className="text-neutral-800 text-sm font-medium">{label}</span>
+                            <span className="text-neutral-400 text-xs block">{age}</span>
+                          </div>
 
-                        <div className="flex items-center gap-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updatePassengerCount("adult", adults - 1)
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                          >
-                            -
-                          </button>
-                          <span className="w-5 text-center text-sm text-neutral-800">
-                            {adults}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updatePassengerCount("adult", adults + 1)
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                          >
-                            +
-                          </button>
+                          <div className="flex items-center gap-3">
+                            <button type="button" onClick={minus} className="w-8 h-8 border rounded-full">-</button>
+                            <span className="w-5 text-center text-sm text-neutral-800">{count}</span>
+                            <button type="button" onClick={plus} className="w-8 h-8 border rounded-full">+</button>
+                          </div>
                         </div>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-neutral-800 text-sm font-medium">
-                            Çocuk
-                          </span>
-                          <span className="text-neutral-400 text-xs block">
-                            2-11 yaş
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updatePassengerCount("child", children - 1)
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                          >
-                            -
-                          </button>
-                          <span className="w-5 text-center text-sm text-neutral-800">
-                            {children}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updatePassengerCount("child", children + 1)
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-neutral-800 text-sm font-medium">
-                            Bebek
-                          </span>
-                          <span className="text-neutral-400 text-xs block">
-                            0-2 yaş
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updatePassengerCount("infant", infants - 1)
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                          >
-                            -
-                          </button>
-                          <span className="w-5 text-center text-sm text-neutral-800">
-                            {infants}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              updatePassengerCount("infant", infants + 1)
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
+                      ))}
 
                       <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
                         <div className="flex items-center gap-2">
@@ -423,10 +328,8 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
                         <div className="flex items-center gap-3">
                           <button
                             type="button"
-                            onClick={() =>
-                              setBabySeat(Math.max(0, babySeat - 1))
-                            }
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                            onClick={() => setBabySeat(Math.max(0, babySeat - 1))}
+                            className="w-8 h-8 border rounded-full"
                           >
                             -
                           </button>
@@ -436,7 +339,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
                           <button
                             type="button"
                             onClick={() => setBabySeat(babySeat + 1)}
-                            className="w-8 h-8 border border-neutral-200 rounded-full text-sm flex items-center justify-center"
+                            className="w-8 h-8 border rounded-full"
                           >
                             +
                           </button>
