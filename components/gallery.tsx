@@ -70,7 +70,7 @@ export function Gallery() {
             Galeri
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground">
-            Filomuzdan Kareler
+            Gezilecek Yerler
           </h2>
         </div>
 
