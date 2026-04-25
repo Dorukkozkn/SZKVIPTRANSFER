@@ -202,7 +202,7 @@ Para Birimi: ${selectedCurrency}`
           SZKVIPTRANSFER
         </p>
 
-<div className="relative bg-white rounded-3xl md:rounded-full shadow-2xl p-3 flex flex-col lg:flex-row items-stretch gap-3 lg:gap-0 overflow-visible w-full max-w-5xl mx-auto">          <div className="flex-1 flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+<div className="relative bg-white rounded-3xl md:rounded-full shadow-2xl py-2 px-3 flex flex-col lg:flex-row items-center gap-2 lg:gap-0 overflow-visible w-full max-w-5xl mx-auto">          <div className="flex-1 flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={from}
