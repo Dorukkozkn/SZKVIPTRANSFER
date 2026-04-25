@@ -208,8 +208,7 @@ Para Birimi: ${currency}`
           onClick={handleSearch}
           className="bg-gold text-black px-6 py-2 rounded-full"
         >
-          Randevu
-        </button>
+          Randevu Al
       </div>
     </div>
   </section>
