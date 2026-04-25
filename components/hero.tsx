@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MapPin, Calendar, Users, Baby, Wallet, Clock } from "lucide-react"
+import { MapPin, Calendar, Users, Baby, Wallet, Clock, Plane, StickyNote } from "lucide-react"
 
 type Gender = "Kadın" | "Erkek" | ""
 
@@ -24,6 +24,8 @@ export function Hero() {
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [currency, setCurrency] = useState("EUR")
+  const [flightCode, setFlightCode] = useState("")
+  const [note, setNote] = useState("")
 
   const [showPassengers, setShowPassengers] = useState(false)
   const [adults, setAdults] = useState(1)
@@ -150,7 +152,7 @@ export function Hero() {
 
   const handleSearch = () => {
     const formattedDate = date
-      ? `${date.split("-")[2]}/${date.split("-")[1]}/${date.split("-")[0]}`
+      ? new Date(`${date}T00:00:00`).toLocaleDateString("tr-TR")
       : "Belirtilmedi"
 
     const selectedCurrency =
@@ -163,6 +165,8 @@ Saat: ${time || "Belirtilmedi"}
 
 Nereden: ${from || "Belirtilmedi"}
 Nereye: ${to || "Belirtilmedi"}
+Uçuş Kodu: ${flightCode || "Belirtilmedi"}
+Not: ${note || "Yok"}
 
 Yolcu Sayısı:
 Yetişkin: ${adults}
@@ -205,7 +209,7 @@ Para Birimi: ${selectedCurrency}`
         </p>
 
         <div className="relative bg-white rounded-3xl lg:rounded-full shadow-2xl py-2 px-2 flex flex-col lg:flex-row items-center gap-2 lg:gap-0 overflow-visible w-full lg:w-fit mx-auto">
-          <div className="w-full lg:w-[190px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={from}
@@ -215,7 +219,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="w-full lg:w-[190px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={to}
@@ -225,7 +229,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="w-full lg:w-[165px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[155px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Calendar className="w-5 h-5 text-gold shrink-0" />
             <input
               type="date"
@@ -235,7 +239,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="w-full lg:w-[120px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[115px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Clock className="w-5 h-5 text-gold shrink-0" />
             <input
               type="time"
@@ -245,7 +249,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="w-full lg:w-[120px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[115px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Wallet className="w-5 h-5 text-gold shrink-0" />
             <select
               value={currency}
@@ -258,6 +262,26 @@ Para Birimi: ${selectedCurrency}`
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="w-full lg:w-[140px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <Plane className="w-5 h-5 text-gold shrink-0" />
+            <input
+              value={flightCode}
+              onChange={(e) => setFlightCode(e.target.value)}
+              placeholder="Uçuş Kodu"
+              className="w-full outline-none text-sm text-neutral-800 bg-transparent"
+            />
+          </div>
+
+          <div className="w-full lg:w-[140px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+            <StickyNote className="w-5 h-5 text-gold shrink-0" />
+            <input
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="Not"
+              className="w-full outline-none text-sm text-neutral-800 bg-transparent"
+            />
           </div>
 
           <div className="relative w-full lg:w-[130px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
