@@ -95,14 +95,14 @@ export function Hero() {
   const passengersToText = (title: string, list: PassengerInfo[]) => {
     if (list.length === 0) return ""
 
-    return \n${title}:\n${list
+    return `\n${title}:\n${list
       .map(
         (p, i) =>
-          ${i + 1}. ${p.fullName || "İsim belirtilmedi"} - ${
+          `${i + 1}. ${p.fullName || "İsim belirtilmedi"} - ${
             p.gender || "Cinsiyet belirtilmedi"
-          }
+          }`
       )
-      .join("\n")}
+      .join("\n")}`
   }
 
   const renderPassengerInputs = (
@@ -120,7 +120,7 @@ export function Hero() {
 
         {list.map((passenger, index) => (
           <div
-            key={${type}-${index}}
+            key={`${type}-${index}`}
             className="rounded-2xl border border-neutral-200 bg-neutral-50 p-3 space-y-2"
           >
             <input
@@ -129,7 +129,7 @@ export function Hero() {
               onChange={(e) =>
                 updatePassengerInfo(type, index, "fullName", e.target.value)
               }
-              placeholder={${index + 1}. yolcu isim soyisim}
+              placeholder={`${index + 1}. yolcu isim soyisim`}
               className="w-full rounded-xl bg-white border border-neutral-200 px-3 py-2.5 text-sm text-neutral-800 outline-none focus:border-gold"
             />
 
@@ -152,7 +152,7 @@ export function Hero() {
 
   const handleSearch = () => {
     const formattedDate = date
-      ? new Date(${date}T00:00:00).toLocaleDateString("tr-TR")
+      ? new Date(`${date}T00:00:00`).toLocaleDateString("tr-TR")
       : "Belirtilmedi"
 
     const selectedCurrency =
@@ -177,13 +177,13 @@ ${passengersToText("Yetişkin Yolcular", adultInfos)}
 ${passengersToText("Çocuk Yolcular", childInfos)}
 ${passengersToText("Bebek Yolcular", infantInfos)}
 
-Bebek Koltuğu: ${babySeat > 0 ? ${babySeat} adet : "Hayır"}
+Bebek Koltuğu: ${babySeat > 0 ? `${babySeat} adet` : "Hayır"}
 Para Birimi: ${selectedCurrency}`
 
     window.open(
-      https://api.whatsapp.com/send?phone=905379592075&text=${encodeURIComponent(
+      `https://api.whatsapp.com/send?phone=905379592075&text=${encodeURIComponent(
         message
-      )},
+      )}`,
       "_blank"
     )
   }
@@ -293,7 +293,7 @@ Para Birimi: ${selectedCurrency}`
               className="w-full text-left text-sm text-neutral-800"
             >
               {totalPassengers} Kişi
-              {babySeat > 0 ? , ${babySeat} Koltuk : ""}
+              {babySeat > 0 ? `, ${babySeat} Koltuk` : ""}
             </button>
 
             {showPassengers && (
