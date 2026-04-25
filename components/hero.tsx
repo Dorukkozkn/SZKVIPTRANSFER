@@ -84,7 +84,7 @@ Para Birimi: ${currency}`
   Lüks Ulaşımın <span className="text-gold">Yeni Adresi</span>
 </h1>
 
-<p className="text-white/70 text-lg tracking-[0.4em] mt-2">
+<p className="text-gold text-sm md:text-base tracking-[0.6em] uppercase mb-8">
   SZKVIPTRANSFER
 </p>
 
