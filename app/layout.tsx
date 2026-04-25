@@ -15,7 +15,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'SZKVIPTRANSFER | VIP Turizm ve Personel Tasimaciligi',
+  title: 'SZKVIPTRANSFER | VIP Turizm',
   description: 'SZKVIPTRANSFER - Luks ve konforlu VIP transfer hizmetleri, personel tasimaciligi ve turizm cozumleri.',
 }
 
