@@ -285,7 +285,7 @@ ${passengersToText("Bebek Yolcular", infantInfos)}
             </button>
 
             {showPassengers && (
-              <div className="absolute top-full left-0 right-0 md:w-[380px] mt-2 bg-white border border-neutral-200 rounded-xl shadow-xl p-4 z-50 space-y-4 max-h-[520px] overflow-y-auto">
+              <div className="absolute top-full right-0 mt-2 w-[calc(100vw-32px)] md:w-[420px] bg-white border border-neutral-200 rounded-xl shadow-xl p-4 z-50 space-y-4 max-h-[520px] overflow-y-auto">
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-neutral-800 text-sm">Yetişkin</span>
