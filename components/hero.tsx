@@ -112,7 +112,9 @@ export function Hero() {
 
     return (
       <div className="space-y-3">
-        <h4 className="text-sm font-semibold text-neutral-900">{title} Bilgileri</h4>
+        <h4 className="text-sm font-semibold text-neutral-900">
+          {title} Bilgileri
+        </h4>
 
         {list.map((passenger, index) => (
           <div
@@ -202,7 +204,8 @@ Para Birimi: ${selectedCurrency}`
           SZKVIPTRANSFER
         </p>
 
-<div className="relative bg-white rounded-3xl md:rounded-full shadow-2xl py-2 px-3 flex flex-col lg:flex-row items-center gap-2 lg:gap-0 overflow-visible w-full max-w-5xl mx-auto">          <div className="flex-1 flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+        <div className="relative bg-white rounded-3xl lg:rounded-full shadow-2xl py-2 px-2 flex flex-col lg:flex-row items-center gap-2 lg:gap-0 overflow-visible w-full lg:w-fit mx-auto">
+          <div className="w-full lg:w-[190px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={from}
@@ -212,7 +215,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="flex-1 flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[190px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
             <input
               value={to}
@@ -222,7 +225,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[165px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Calendar className="w-5 h-5 text-gold shrink-0" />
             <input
               type="date"
@@ -232,7 +235,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[120px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Clock className="w-5 h-5 text-gold shrink-0" />
             <input
               type="time"
@@ -242,7 +245,7 @@ Para Birimi: ${selectedCurrency}`
             />
           </div>
 
-          <div className="flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="w-full lg:w-[120px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Wallet className="w-5 h-5 text-gold shrink-0" />
             <select
               value={currency}
@@ -257,7 +260,7 @@ Para Birimi: ${selectedCurrency}`
             </select>
           </div>
 
-          <div className="relative flex items-center gap-3 px-4 py-3 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="relative w-full lg:w-[130px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Users className="w-5 h-5 text-gold shrink-0" />
 
             <button
@@ -327,7 +330,9 @@ Para Birimi: ${selectedCurrency}`
                         <div className="flex items-center gap-3">
                           <button
                             type="button"
-                            onClick={() => setBabySeat(Math.max(0, babySeat - 1))}
+                            onClick={() =>
+                              setBabySeat(Math.max(0, babySeat - 1))
+                            }
                             className="w-9 h-9 rounded-full bg-white border border-neutral-200 text-neutral-700"
                           >
                             -
@@ -360,7 +365,7 @@ Para Birimi: ${selectedCurrency}`
           <button
             type="button"
             onClick={handleSearch}
-            className="bg-gold hover:bg-gold/90 text-black font-semibold px-8 py-4 rounded-2xl lg:rounded-full transition-colors"
+            className="w-full lg:w-auto bg-gold hover:bg-gold/90 text-black font-semibold px-6 py-3 rounded-2xl lg:rounded-full transition-colors shrink-0"
           >
             Randevu
           </button>
