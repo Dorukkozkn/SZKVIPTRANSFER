@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { MapPin, Calendar, Users, Baby, Wallet, Clock, Plane, StickyNote } from "lucide-react"
 
 type Gender = "Kadın" | "Erkek" | ""
@@ -10,6 +10,17 @@ type PassengerInfo = {
   gender: Gender
 }
 
+type Prediction = {
+  description: string
+  place_id: string
+}
+
+declare global {
+  interface Window {
+    google?: any
+  }
+}
+
 const currencies = [
   { label: "Pound", value: "GBP" },
   { label: "Euro", value: "EUR" },
@@ -17,6 +28,112 @@ const currencies = [
   { label: "Ruble", value: "RUB" },
   { label: "TL", value: "TRY" },
 ]
+
+function loadGoogleMapsScript() {
+  return new Promise<void>((resolve, reject) => {
+    if (typeof window === "undefined") return reject()
+    if (window.google?.maps?.places) return resolve()
+
+    const existingScript = document.getElementById("google-maps-script")
+    if (existingScript) {
+      existingScript.addEventListener("load", () => resolve())
+      return
+    }
+
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+    if (!apiKey) return reject()
+
+    const script = document.createElement("script")
+    script.id = "google-maps-script"
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&language=tr&region=TR`
+    script.async = true
+    script.defer = true
+    script.onload = () => resolve()
+    script.onerror = () => reject()
+    document.head.appendChild(script)
+  })
+}
+
+function LocationInput({
+  value,
+  onChange,
+  placeholder,
+}: {
+  value: string
+  onChange: (value: string) => void
+  placeholder: string
+}) {
+  const [ready, setReady] = useState(false)
+  const [predictions, setPredictions] = useState<Prediction[]>([])
+  const [showPredictions, setShowPredictions] = useState(false)
+  const serviceRef = useRef<any>(null)
+
+  useEffect(() => {
+    loadGoogleMapsScript()
+      .then(() => {
+        serviceRef.current = new window.google.maps.places.AutocompleteService()
+        setReady(true)
+      })
+      .catch(() => {
+        setReady(false)
+      })
+  }, [])
+
+  const handleChange = (text: string) => {
+    onChange(text)
+
+    if (!ready || !serviceRef.current || text.trim().length < 2) {
+      setPredictions([])
+      setShowPredictions(false)
+      return
+    }
+
+    serviceRef.current.getPlacePredictions(
+      {
+        input: text,
+        componentRestrictions: { country: "tr" },
+      },
+      (results: Prediction[] | null) => {
+        setPredictions(results || [])
+        setShowPredictions(true)
+      }
+    )
+  }
+
+  return (
+    <div className="relative w-full">
+      <input
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        onFocus={() => predictions.length > 0 && setShowPredictions(true)}
+        placeholder={placeholder}
+        className="w-full outline-none text-sm text-neutral-800 bg-transparent"
+      />
+
+      {showPredictions && predictions.length > 0 && (
+        <div className="absolute left-0 top-[calc(100%+16px)] w-[360px] max-w-[calc(100vw-40px)] bg-white rounded-2xl shadow-2xl border border-neutral-200 z-[99999] overflow-hidden text-left">
+          {predictions.slice(0, 5).map((item) => (
+            <button
+              key={item.place_id}
+              type="button"
+              onMouseDown={() => {
+                onChange(item.description)
+                setShowPredictions(false)
+                setPredictions([])
+              }}
+              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-neutral-50 border-b last:border-b-0"
+            >
+              <MapPin className="w-4 h-4 text-neutral-400 shrink-0" />
+              <span className="text-sm text-neutral-700 line-clamp-1">
+                {item.description}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function Hero() {
   const [from, setFrom] = useState("")
@@ -209,24 +326,14 @@ Para Birimi: ${selectedCurrency}`
         </p>
 
         <div className="relative bg-white rounded-3xl lg:rounded-full shadow-2xl py-2 px-2 flex flex-col lg:flex-row items-center gap-2 lg:gap-0 overflow-visible w-full lg:w-fit mx-auto">
-          <div className="w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="relative w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
-            <input
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-              placeholder="Nereden?"
-              className="w-full outline-none text-sm text-neutral-800"
-            />
+            <LocationInput value={from} onChange={setFrom} placeholder="Nereden?" />
           </div>
 
-          <div className="w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
+          <div className="relative w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
-            <input
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              placeholder="Nereye?"
-              className="w-full outline-none text-sm text-neutral-800"
-            />
+            <LocationInput value={to} onChange={setTo} placeholder="Nereye?" />
           </div>
 
           <div className="w-full lg:w-[155px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
