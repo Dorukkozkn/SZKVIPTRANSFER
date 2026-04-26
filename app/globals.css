@@ -107,27 +107,35 @@
   background: #999;
 }
 
-/* Google Places Autocomplete Dropdown */
+/* Google Places Autocomplete Dropdown - Fixed UI */
 .pac-container {
   z-index: 999999999 !important;
+  width: 420px !important;
+  max-width: calc(100vw - 32px) !important;
+  min-width: 360px !important;
+  margin-top: 12px !important;
   border-radius: 18px !important;
-  margin-top: 14px !important;
   overflow: hidden !important;
   border: 1px solid #e5e5e5 !important;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22) !important;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22) !important;
   font-family: var(--font-inter), 'Inter', system-ui, sans-serif !important;
+  background: #fff !important;
 }
 
 .pac-item {
-  padding: 13px 16px !important;
-  min-height: 54px !important;
+  height: auto !important;
+  min-height: 48px !important;
+  padding: 10px 14px !important;
   display: flex !important;
   align-items: center !important;
+  gap: 10px !important;
   cursor: pointer !important;
   border-top: 0 !important;
   border-bottom: 1px solid #eeeeee !important;
-  font-size: 14px !important;
-  color: #555 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  color: #666 !important;
+  white-space: nowrap !important;
 }
 
 .pac-item:hover {
@@ -139,41 +147,53 @@
 }
 
 .pac-icon {
-  margin-right: 12px !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 8px 0 0 !important;
   opacity: 0.55 !important;
+  flex-shrink: 0 !important;
+}
+
+.pac-item span {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 .pac-item-query {
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
-  color: #333 !important;
+  color: #222 !important;
 }
 
 .pac-matched {
   font-weight: 800 !important;
-  color: #222 !important;
+  color: #111 !important;
 }
 
 .pac-logo::after {
-  padding: 8px 14px !important;
-  background-position: right 14px center !important;
+  padding: 7px 12px !important;
+  background-position: right 12px center !important;
 }
 
 /* Mobile Google autocomplete fix */
 @media (max-width: 768px) {
   .pac-container {
+    width: calc(100vw - 32px) !important;
+    min-width: 0 !important;
     max-width: calc(100vw - 32px) !important;
     left: 16px !important;
     right: 16px !important;
-    width: auto !important;
+    border-radius: 16px !important;
   }
 
   .pac-item {
-    min-height: 52px !important;
-    padding: 12px 14px !important;
+    min-height: 46px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
   }
 
   .pac-item-query {
-    font-size: 14px !important;
+    font-size: 13px !important;
   }
 }
