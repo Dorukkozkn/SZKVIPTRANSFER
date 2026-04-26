@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import "./globals.css"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://szkviptransfer.com"),
@@ -9,137 +10,163 @@ export const metadata: Metadata = {
   },
 
   description:
-    "SZKVIPTRANSFER ile Antalya VIP transfer, havalimanı transferi, özel şoförlü araç ve lüks ulaşım hizmetlerinden güvenli ve konforlu şekilde yararlanın. Antalya, Alanya, Belek, Side, Kemer ve Türkiye geneli VIP transfer çözümleri.",
-
-  keywords: [
-    "SZKVIPTRANSFER",
-    "SZK VIP Transfer",
-    "Antalya VIP transfer",
-    "VIP transfer Antalya",
-    "Antalya havalimanı transfer",
-    "Antalya airport transfer",
-    "Antalya özel transfer",
-    "Antalya lüks transfer",
-    "Antalya şoförlü araç",
-    "VIP ulaşım Antalya",
-    "Antalya transfer hizmeti",
-    "Alanya VIP transfer",
-    "Belek VIP transfer",
-    "Side VIP transfer",
-    "Kemer VIP transfer",
-    "Lara VIP transfer",
-    "Antalya şehir içi transfer",
-    "Türkiye VIP transfer",
-    "özel şoförlü araç",
-    "lüks ulaşım hizmeti",
-  ],
-
-  authors: [
-    {
-      name: "SZKVIPTRANSFER",
-      url: "https://szkviptransfer.com",
-    },
-  ],
-
-  creator: "SZKVIPTRANSFER",
-  publisher: "SZKVIPTRANSFER",
-  applicationName: "SZKVIPTRANSFER",
-  category: "Travel",
-
-  alternates: {
-    canonical: "https://szkviptransfer.com",
-    languages: {
-      "tr-TR": "https://szkviptransfer.com",
-      "en-US": "https://szkviptransfer.com/en",
-      "x-default": "https://szkviptransfer.com",
-    },
-  },
+    "SZKVIPTRANSFER ile Antalya VIP transfer, havalimanı transferi, özel şoförlü araç ve lüks ulaşım hizmetlerinden güvenli ve konforlu şekilde yararlanın.",
 
   robots: {
     index: true,
     follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      "max-snippet": -1,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
+  },
+}
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://szkviptransfer.com/#localbusiness",
+      name: "SZKVIPTRANSFER",
+      alternateName: "SZK VIP Transfer",
+      url: "https://szkviptransfer.com",
+      logo: "https://szkviptransfer.com/icon.png",
+      image: "https://szkviptransfer.com/og-image.jpg",
+      telephone: "+90 537 959 20 75",
+      priceRange: "€€",
+      description:
+        "SZKVIPTRANSFER, Antalya ve Türkiye genelinde VIP transfer, havalimanı transferi, özel şoförlü araç ve lüks ulaşım hizmetleri sunar.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Antalya",
+        addressCountry: "TR",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 36.8969,
+        longitude: 30.7133,
+      },
+      areaServed: [
+        {
+          "@type": "City",
+          name: "Antalya",
+        },
+        {
+          "@type": "City",
+          name: "Alanya",
+        },
+        {
+          "@type": "City",
+          name: "Belek",
+        },
+        {
+          "@type": "City",
+          name: "Side",
+        },
+        {
+          "@type": "City",
+          name: "Kemer",
+        },
+        {
+          "@type": "Country",
+          name: "Türkiye",
+        },
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+90 537 959 20 75",
+        contactType: "customer service",
+        availableLanguage: ["Turkish", "English"],
+        areaServed: "TR",
+      },
+      sameAs: ["https://szkviptransfer.com"],
     },
-  },
-
-  openGraph: {
-    title: "SZKVIPTRANSFER | Antalya VIP Transfer ve Özel Ulaşım",
-    description:
-      "Antalya ve Türkiye genelinde güvenli, konforlu ve prestijli VIP transfer hizmeti. Havalimanı transferi, özel şoförlü araç ve lüks ulaşım çözümleri için hızlı rezervasyon yapın.",
-    url: "https://szkviptransfer.com",
-    siteName: "SZKVIPTRANSFER",
-    locale: "tr_TR",
-    type: "website",
-    countryName: "Türkiye",
-    phoneNumbers: ["+90 537 959 20 75"],
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "SZKVIPTRANSFER Antalya VIP Transfer Hizmeti",
-        type: "image/jpeg",
+    {
+      "@type": "WebSite",
+      "@id": "https://szkviptransfer.com/#website",
+      url: "https://szkviptransfer.com",
+      name: "SZKVIPTRANSFER",
+      publisher: {
+        "@id": "https://szkviptransfer.com/#localbusiness",
       },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "SZKVIPTRANSFER | Antalya VIP Transfer",
-    description:
-      "Antalya VIP transfer, havalimanı transferi ve özel şoförlü lüks ulaşım hizmetleri için SZKVIPTRANSFER.",
-    images: ["/og-image.jpg"],
-    creator: "@szkviptransfer",
-  },
-
-  icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        sizes: "48x48",
+      inLanguage: "tr-TR",
+    },
+    {
+      "@type": "Service",
+      "@id": "https://szkviptransfer.com/#service",
+      serviceType: "VIP Transfer",
+      name: "Antalya VIP Transfer Hizmeti",
+      provider: {
+        "@id": "https://szkviptransfer.com/#localbusiness",
       },
-      {
-        url: "/icon.png",
-        sizes: "512x512",
-        type: "image/png",
+      areaServed: {
+        "@type": "Country",
+        name: "Türkiye",
       },
-    ],
-    apple: [
-      {
-        url: "/apple-icon.png",
-        sizes: "180x180",
-        type: "image/png",
+      description:
+        "Antalya havalimanı transferi, şehir içi VIP transfer, özel şoförlü araç ve lüks ulaşım hizmetleri.",
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        priceCurrency: "EUR",
+        url: "https://szkviptransfer.com",
       },
-    ],
-  },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://szkviptransfer.com/#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "SZKVIPTRANSFER hangi bölgelerde hizmet veriyor?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "SZKVIPTRANSFER başta Antalya olmak üzere Alanya, Belek, Side, Kemer, Lara ve Türkiye genelinde VIP transfer hizmeti sunar.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Havalimanı transfer hizmeti var mı?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Evet. Antalya Havalimanı ve çevre bölgeler için özel havalimanı transfer hizmeti sağlanır.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Rezervasyon nasıl yapılır?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Web sitesindeki rezervasyon formu üzerinden alınış ve varış noktası, tarih, saat ve yolcu bilgileri girilerek WhatsApp üzerinden hızlı rezervasyon talebi oluşturulabilir.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Bebek koltuğu talep edilebilir mi?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Evet. Rezervasyon sırasında bebek koltuğu talebi belirtilebilir.",
+          },
+        },
+      ],
+    },
+  ],
+}
 
-  manifest: "/site.webmanifest",
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="tr">
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
 
-  other: {
-    "theme-color": "#c9a227",
-    "msapplication-TileColor": "#c9a227",
-
-    "geo.region": "TR-07",
-    "geo.placename": "Antalya",
-    "geo.position": "36.8969;30.7133",
-    ICBM: "36.8969, 30.7133",
-
-    "business:contact_data:locality": "Antalya",
-    "business:contact_data:country_name": "Türkiye",
-    "business:contact_data:phone_number": "+90 537 959 20 75",
-
-    "og:updated_time": "2026-04-26T12:00:00+03:00",
-
-    "twitter:label1": "Hizmet",
-    "twitter:data1": "VIP Transfer",
-    "twitter:label2": "Bölge",
-    "twitter:data2": "Antalya ve Türkiye Geneli",
-  },
+        {children}
+      </body>
+    </html>
+  )
 }
