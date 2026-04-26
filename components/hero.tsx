@@ -19,11 +19,6 @@ type PassengerInfo = {
   gender: Gender
 }
 
-type Prediction = {
-  description: string
-  place_id: string
-}
-
 declare global {
   interface Window {
     google?: any
@@ -40,17 +35,21 @@ const currencies = [
 
 function loadGoogleMapsScript() {
   return new Promise<void>((resolve, reject) => {
-    if (typeof window === "undefined") return reject()
+    if (typeof window === "undefined") {
+      reject()
+      return
+    }
 
     if (window.google?.maps?.places) {
       resolve()
       return
     }
 
-    const oldScript = document.getElementById("google-maps-script")
-    if (oldScript) {
-      oldScript.addEventListener("load", () => resolve())
-      oldScript.addEventListener("error", () => reject())
+    const existingScript = document.getElementById("google-maps-script")
+
+    if (existingScript) {
+      existingScript.addEventListener("load", () => resolve())
+      existingScript.addEventListener("error", () => reject())
       return
     }
 
@@ -82,83 +81,54 @@ function LocationInput({
   onChange: (value: string) => void
   placeholder: string
 }) {
-  const [ready, setReady] = useState(false)
-  const [predictions, setPredictions] = useState<Prediction[]>([])
-  const [open, setOpen] = useState(false)
-  const serviceRef = useRef<any>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
-    loadGoogleMapsScript()
-      .then(() => {
-        serviceRef.current =
-          new window.google.maps.places.AutocompleteService()
-        setReady(true)
-      })
-      .catch(() => {
-        setReady(false)
-      })
-  }, [])
+    let autocomplete: any = null
+    let listener: any = null
 
-  const handleChange = (text: string) => {
-    onChange(text)
+    const initAutocomplete = () => {
+      if (!inputRef.current || !window.google?.maps?.places) return
 
-    if (!ready || !serviceRef.current || text.trim().length < 2) {
-      setPredictions([])
-      setOpen(false)
-      return
+      autocomplete = new window.google.maps.places.Autocomplete(
+        inputRef.current,
+        {
+          componentRestrictions: { country: "tr" },
+          fields: ["formatted_address", "name"],
+        }
+      )
+
+      listener = autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace()
+
+        const selectedText =
+          place.formatted_address ||
+          place.name ||
+          inputRef.current?.value ||
+          ""
+
+        onChange(selectedText)
+      })
     }
 
-    serviceRef.current.getPlacePredictions(
-      {
-        input: text,
-        componentRestrictions: { country: "tr" },
-      },
-      (results: Prediction[] | null) => {
-        setPredictions(results || [])
-        setOpen(true)
-      }
-    )
-  }
+    loadGoogleMapsScript().then(initAutocomplete).catch(() => {})
 
-  const selectPlace = (description: string) => {
-    onChange(description)
-    setPredictions([])
-    setOpen(false)
-  }
+    return () => {
+      if (listener) {
+        listener.remove()
+      }
+    }
+  }, [onChange])
 
   return (
-    <div className="relative w-full">
-      <input
-        value={value}
-        onChange={(e) => handleChange(e.target.value)}
-        onFocus={() => predictions.length > 0 && setOpen(true)}
-        placeholder={placeholder}
-        autoComplete="off"
-        className="w-full outline-none text-sm text-neutral-800 bg-transparent"
-      />
-
-      {open && predictions.length > 0 && (
-        <div className="absolute left-[-44px] top-[calc(100%+18px)] w-[420px] max-w-[calc(100vw-40px)] bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden z-[999999] text-left">
-          {predictions.slice(0, 5).map((item) => (
-            <button
-              key={item.place_id}
-              type="button"
-              onMouseDown={() => selectPlace(item.description)}
-              className="w-full flex items-center gap-3 px-4 py-3 border-b last:border-b-0 hover:bg-neutral-50 transition"
-            >
-              <MapPin className="w-5 h-5 text-neutral-400 shrink-0" />
-              <span className="text-sm text-neutral-700 line-clamp-1">
-                {item.description}
-              </span>
-            </button>
-          ))}
-
-          <div className="px-4 py-2 text-right text-xs text-neutral-400">
-            powered by Google
-          </div>
-        </div>
-      )}
-    </div>
+    <input
+      ref={inputRef}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      autoComplete="off"
+      className="w-full outline-none text-sm text-neutral-800 bg-transparent"
+    />
   )
 }
 
