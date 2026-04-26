@@ -1,7 +1,16 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { MapPin, Calendar, Users, Baby, Wallet, Clock, Plane, StickyNote } from "lucide-react"
+import {
+  MapPin,
+  Calendar,
+  Users,
+  Baby,
+  Wallet,
+  Clock,
+  Plane,
+  StickyNote,
+} from "lucide-react"
 
 type Gender = "Kadın" | "Erkek" | ""
 
@@ -32,16 +41,25 @@ const currencies = [
 function loadGoogleMapsScript() {
   return new Promise<void>((resolve, reject) => {
     if (typeof window === "undefined") return reject()
-    if (window.google?.maps?.places) return resolve()
 
-    const existingScript = document.getElementById("google-maps-script")
-    if (existingScript) {
-      existingScript.addEventListener("load", () => resolve())
+    if (window.google?.maps?.places) {
+      resolve()
+      return
+    }
+
+    const oldScript = document.getElementById("google-maps-script")
+    if (oldScript) {
+      oldScript.addEventListener("load", () => resolve())
+      oldScript.addEventListener("error", () => reject())
       return
     }
 
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
-    if (!apiKey) return reject()
+
+    if (!apiKey) {
+      reject()
+      return
+    }
 
     const script = document.createElement("script")
     script.id = "google-maps-script"
@@ -50,6 +68,7 @@ function loadGoogleMapsScript() {
     script.defer = true
     script.onload = () => resolve()
     script.onerror = () => reject()
+
     document.head.appendChild(script)
   })
 }
@@ -65,13 +84,14 @@ function LocationInput({
 }) {
   const [ready, setReady] = useState(false)
   const [predictions, setPredictions] = useState<Prediction[]>([])
-  const [showPredictions, setShowPredictions] = useState(false)
+  const [open, setOpen] = useState(false)
   const serviceRef = useRef<any>(null)
 
   useEffect(() => {
     loadGoogleMapsScript()
       .then(() => {
-        serviceRef.current = new window.google.maps.places.AutocompleteService()
+        serviceRef.current =
+          new window.google.maps.places.AutocompleteService()
         setReady(true)
       })
       .catch(() => {
@@ -84,7 +104,7 @@ function LocationInput({
 
     if (!ready || !serviceRef.current || text.trim().length < 2) {
       setPredictions([])
-      setShowPredictions(false)
+      setOpen(false)
       return
     }
 
@@ -92,12 +112,19 @@ function LocationInput({
       {
         input: text,
         componentRestrictions: { country: "tr" },
+        language: "tr",
       },
       (results: Prediction[] | null) => {
         setPredictions(results || [])
-        setShowPredictions(true)
+        setOpen(true)
       }
     )
+  }
+
+  const selectPlace = (description: string) => {
+    onChange(description)
+    setPredictions([])
+    setOpen(false)
   }
 
   return (
@@ -105,30 +132,31 @@ function LocationInput({
       <input
         value={value}
         onChange={(e) => handleChange(e.target.value)}
-        onFocus={() => predictions.length > 0 && setShowPredictions(true)}
+        onFocus={() => predictions.length > 0 && setOpen(true)}
         placeholder={placeholder}
+        autoComplete="off"
         className="w-full outline-none text-sm text-neutral-800 bg-transparent"
       />
 
-      {showPredictions && predictions.length > 0 && (
-        <div className="absolute left-0 top-[calc(100%+16px)] w-[360px] max-w-[calc(100vw-40px)] bg-white rounded-2xl shadow-2xl border border-neutral-200 z-[99999] overflow-hidden text-left">
+      {open && predictions.length > 0 && (
+        <div className="absolute left-[-44px] top-[calc(100%+18px)] w-[420px] max-w-[calc(100vw-40px)] bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden z-[999999] text-left">
           {predictions.slice(0, 5).map((item) => (
             <button
               key={item.place_id}
               type="button"
-              onMouseDown={() => {
-                onChange(item.description)
-                setShowPredictions(false)
-                setPredictions([])
-              }}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-neutral-50 border-b last:border-b-0"
+              onMouseDown={() => selectPlace(item.description)}
+              className="w-full flex items-center gap-3 px-4 py-3 border-b last:border-b-0 hover:bg-neutral-50 transition"
             >
-              <MapPin className="w-4 h-4 text-neutral-400 shrink-0" />
+              <MapPin className="w-5 h-5 text-neutral-400 shrink-0" />
               <span className="text-sm text-neutral-700 line-clamp-1">
                 {item.description}
               </span>
             </button>
           ))}
+
+          <div className="px-4 py-2 text-right text-xs text-neutral-400">
+            powered by Google
+          </div>
         </div>
       )}
     </div>
@@ -328,12 +356,20 @@ Para Birimi: ${selectedCurrency}`
         <div className="relative bg-white rounded-3xl lg:rounded-full shadow-2xl py-2 px-2 flex flex-col lg:flex-row items-center gap-2 lg:gap-0 overflow-visible w-full lg:w-fit mx-auto">
           <div className="relative w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
-            <LocationInput value={from} onChange={setFrom} placeholder="Nereden?" />
+            <LocationInput
+              value={from}
+              onChange={setFrom}
+              placeholder="Nereden?"
+            />
           </div>
 
           <div className="relative w-full lg:w-[170px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <MapPin className="w-5 h-5 text-gold shrink-0" />
-            <LocationInput value={to} onChange={setTo} placeholder="Nereye?" />
+            <LocationInput
+              value={to}
+              onChange={setTo}
+              placeholder="Nereye?"
+            />
           </div>
 
           <div className="w-full lg:w-[155px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
@@ -348,12 +384,24 @@ Para Birimi: ${selectedCurrency}`
 
           <div className="w-full lg:w-[115px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
             <Clock className="w-5 h-5 text-gold shrink-0" />
-            <input
-              type="time"
+            <select
               value={time}
               onChange={(e) => setTime(e.target.value)}
               className="w-full outline-none text-sm text-neutral-800 bg-transparent"
-            />
+            >
+              <option value="">Saat</option>
+              {Array.from({ length: 48 }, (_, i) => {
+                const hour = String(Math.floor(i / 2)).padStart(2, "0")
+                const minute = i % 2 === 0 ? "00" : "30"
+                const value = `${hour}:${minute}`
+
+                return (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                )
+              })}
+            </select>
           </div>
 
           <div className="w-full lg:w-[115px] flex items-center gap-3 px-4 py-2.5 border border-neutral-100 lg:border-0 lg:border-r rounded-2xl lg:rounded-none">
@@ -421,7 +469,9 @@ Para Birimi: ${selectedCurrency}`
                             <p className="text-sm font-semibold text-neutral-900">
                               {label}
                             </p>
-                            <p className="text-xs text-neutral-500">{age}</p>
+                            <p className="text-xs text-neutral-500">
+                              {age}
+                            </p>
                           </div>
 
                           <div className="flex items-center gap-3">
@@ -434,9 +484,11 @@ Para Birimi: ${selectedCurrency}`
                             >
                               -
                             </button>
+
                             <span className="w-5 text-center text-sm font-semibold text-neutral-900">
                               {count}
                             </span>
+
                             <button
                               type="button"
                               onClick={() =>
@@ -468,9 +520,11 @@ Para Birimi: ${selectedCurrency}`
                           >
                             -
                           </button>
+
                           <span className="w-5 text-center text-sm font-semibold text-neutral-900">
                             {babySeat}
                           </span>
+
                           <button
                             type="button"
                             onClick={() => setBabySeat(babySeat + 1)}
@@ -501,7 +555,3 @@ Para Birimi: ${selectedCurrency}`
             Randevu
           </button>
         </div>
-      </div>
-    </section>
-  )
-}
