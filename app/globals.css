@@ -61,9 +61,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground antialiased;
   }
+
   html {
     scroll-behavior: smooth;
   }
@@ -103,4 +105,75 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #999;
+}
+
+/* Google Places Autocomplete Dropdown */
+.pac-container {
+  z-index: 999999999 !important;
+  border-radius: 18px !important;
+  margin-top: 14px !important;
+  overflow: hidden !important;
+  border: 1px solid #e5e5e5 !important;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22) !important;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif !important;
+}
+
+.pac-item {
+  padding: 13px 16px !important;
+  min-height: 54px !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid #eeeeee !important;
+  font-size: 14px !important;
+  color: #555 !important;
+}
+
+.pac-item:hover {
+  background-color: #f7f7f7 !important;
+}
+
+.pac-item:last-child {
+  border-bottom: 0 !important;
+}
+
+.pac-icon {
+  margin-right: 12px !important;
+  opacity: 0.55 !important;
+}
+
+.pac-item-query {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #333 !important;
+}
+
+.pac-matched {
+  font-weight: 800 !important;
+  color: #222 !important;
+}
+
+.pac-logo::after {
+  padding: 8px 14px !important;
+  background-position: right 14px center !important;
+}
+
+/* Mobile Google autocomplete fix */
+@media (max-width: 768px) {
+  .pac-container {
+    max-width: calc(100vw - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: auto !important;
+  }
+
+  .pac-item {
+    min-height: 52px !important;
+    padding: 12px 14px !important;
+  }
+
+  .pac-item-query {
+    font-size: 14px !important;
+  }
 }
