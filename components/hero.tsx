@@ -554,3 +554,7 @@ Para Birimi: ${selectedCurrency}`
             Randevu
           </button>
         </div>
+      </div>
+    </section>
+  )
+}
