@@ -112,7 +112,6 @@ function LocationInput({
       {
         input: text,
         componentRestrictions: { country: "tr" },
-        language: "tr",
       },
       (results: Prediction[] | null) => {
         setPredictions(results || [])
