@@ -197,3 +197,153 @@
     font-size: 13px !important;
   }
 }
+
+/* Google Translate UI hide */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}    scroll-behavior: smooth;
+  }
+}
+
+/* Gold color utilities */
+.text-gold {
+  color: #c9a227;
+}
+
+.bg-gold {
+  background-color: #c9a227;
+}
+
+.border-gold {
+  border-color: #c9a227;
+}
+
+/* Selection styling */
+::selection {
+  background-color: #c9a227;
+  color: #000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Google Places Autocomplete Dropdown - Fixed UI */
+.pac-container {
+  z-index: 999999999 !important;
+  width: 420px !important;
+  max-width: calc(100vw - 32px) !important;
+  min-width: 360px !important;
+  margin-top: 12px !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid #e5e5e5 !important;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22) !important;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif !important;
+  background: #fff !important;
+}
+
+.pac-item {
+  height: auto !important;
+  min-height: 48px !important;
+  padding: 10px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid #eeeeee !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  color: #666 !important;
+  white-space: nowrap !important;
+}
+
+.pac-item:hover {
+  background-color: #f7f7f7 !important;
+}
+
+.pac-item:last-child {
+  border-bottom: 0 !important;
+}
+
+.pac-icon {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 8px 0 0 !important;
+  opacity: 0.55 !important;
+  flex-shrink: 0 !important;
+}
+
+.pac-item span {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.pac-item-query {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #222 !important;
+}
+
+.pac-matched {
+  font-weight: 800 !important;
+  color: #111 !important;
+}
+
+.pac-logo::after {
+  padding: 7px 12px !important;
+  background-position: right 12px center !important;
+}
+
+/* Mobile Google autocomplete fix */
+@media (max-width: 768px) {
+  .pac-container {
+    width: calc(100vw - 32px) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .pac-item {
+    min-height: 46px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .pac-item-query {
+    font-size: 13px !important;
+  }
+}
