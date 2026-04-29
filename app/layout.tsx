@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SZKVIPTRANSFER Antalya VIP Transfer",
+        type: "image/jpeg",
+
+      },
+      {
         url: "/favicon.ico",
         sizes: "48x48",
         type: "image/x-icon",
