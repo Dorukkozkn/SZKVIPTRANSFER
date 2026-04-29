@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 import "./globals.css"
 
+const siteUrl = "https://szkviptransfer.com"
+const ogImage = `${siteUrl}/szkvip-og-v3.jpg`
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://szkviptransfer.com"),
+  metadataBase: new URL(siteUrl),
 
   title: {
     default: "SZKVIPTRANSFER | Antalya VIP Transfer ve Havalimanı Transfer Hizmeti",
@@ -12,15 +15,39 @@ export const metadata: Metadata = {
   description:
     "SZKVIPTRANSFER ile Antalya VIP transfer, havalimanı transferi, özel şoförlü araç ve lüks ulaşım hizmetlerinden güvenli ve konforlu şekilde yararlanın.",
 
-  icons: {
-    icon: [
+  alternates: {
+    canonical: siteUrl,
+  },
+
+  openGraph: {
+    title: "SZKVIPTRANSFER | Antalya VIP Transfer",
+    description:
+      "Antalya VIP transfer, havalimanı transferi ve özel şoförlü lüks ulaşım hizmetleri için hızlı rezervasyon oluşturun.",
+    url: siteUrl,
+    siteName: "SZKVIPTRANSFER",
+    locale: "tr_TR",
+    type: "website",
+    images: [
       {
-        url: "/og-image.jpg",
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: "SZKVIPTRANSFER Antalya VIP Transfer",
         type: "image/jpeg",
       },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "SZKVIPTRANSFER | Antalya VIP Transfer",
+    description:
+      "Antalya VIP transfer, havalimanı transferi ve özel şoförlü lüks ulaşım hizmetleri.",
+    images: [ogImage],
+  },
+
+  icons: {
+    icon: [
       {
         url: "/favicon.ico",
         sizes: "48x48",
@@ -44,6 +71,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 }
 
@@ -52,12 +86,12 @@ const structuredData = {
   "@graph": [
     {
       "@type": "LocalBusiness",
-      "@id": "https://szkviptransfer.com/#localbusiness",
+      "@id": `${siteUrl}/#localbusiness`,
       name: "SZKVIPTRANSFER",
       alternateName: "SZK VIP Transfer",
-      url: "https://szkviptransfer.com",
-      logo: "https://szkviptransfer.com/icon.png",
-      image: "https://szkviptransfer.com/og-image.jpg",
+      url: siteUrl,
+      logo: `${siteUrl}/icon.png`,
+      image: ogImage,
       telephone: "+90 537 959 20 75",
       priceRange: "€€",
       description:
@@ -73,30 +107,12 @@ const structuredData = {
         longitude: 30.7133,
       },
       areaServed: [
-        {
-          "@type": "City",
-          name: "Antalya",
-        },
-        {
-          "@type": "City",
-          name: "Alanya",
-        },
-        {
-          "@type": "City",
-          name: "Belek",
-        },
-        {
-          "@type": "City",
-          name: "Side",
-        },
-        {
-          "@type": "City",
-          name: "Kemer",
-        },
-        {
-          "@type": "Country",
-          name: "Türkiye",
-        },
+        { "@type": "City", name: "Antalya" },
+        { "@type": "City", name: "Alanya" },
+        { "@type": "City", name: "Belek" },
+        { "@type": "City", name: "Side" },
+        { "@type": "City", name: "Kemer" },
+        { "@type": "Country", name: "Türkiye" },
       ],
       contactPoint: {
         "@type": "ContactPoint",
@@ -105,25 +121,25 @@ const structuredData = {
         availableLanguage: ["Turkish", "English"],
         areaServed: "TR",
       },
-      sameAs: ["https://szkviptransfer.com"],
+      sameAs: [siteUrl],
     },
     {
       "@type": "WebSite",
-      "@id": "https://szkviptransfer.com/#website",
-      url: "https://szkviptransfer.com",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
       name: "SZKVIPTRANSFER",
       publisher: {
-        "@id": "https://szkviptransfer.com/#localbusiness",
+        "@id": `${siteUrl}/#localbusiness`,
       },
       inLanguage: "tr-TR",
     },
     {
       "@type": "Service",
-      "@id": "https://szkviptransfer.com/#service",
+      "@id": `${siteUrl}/#service`,
       serviceType: "VIP Transfer",
       name: "Antalya VIP Transfer Hizmeti",
       provider: {
-        "@id": "https://szkviptransfer.com/#localbusiness",
+        "@id": `${siteUrl}/#localbusiness`,
       },
       areaServed: {
         "@type": "Country",
@@ -135,12 +151,12 @@ const structuredData = {
         "@type": "Offer",
         availability: "https://schema.org/InStock",
         priceCurrency: "EUR",
-        url: "https://szkviptransfer.com",
+        url: siteUrl,
       },
     },
     {
       "@type": "FAQPage",
-      "@id": "https://szkviptransfer.com/#faq",
+      "@id": `${siteUrl}/#faq`,
       mainEntity: [
         {
           "@type": "Question",
