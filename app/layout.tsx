@@ -20,7 +20,6 @@ export const metadata: Metadata = {
         height: 630,
         alt: "SZKVIPTRANSFER Antalya VIP Transfer",
         type: "image/jpeg",
-
       },
       {
         url: "/favicon.ico",
