@@ -1,6 +1,26 @@
 "use client"
 
+import { useEffect, useState } from "react"
+
+const aboutImages = [
+  "https://i.ibb.co/fzVg5Bmz/Whats-App-mage-2026-04-07-at-22-43-46.jpg",
+  "https://i.ibb.co/RT3v4Ggy/MG-7118.jpg",
+  "https://i.ibb.co/8LYjXS2d/02ce76ab-424d-4e0c-8e73-87c46bd66536.jpg",
+  "https://i.ibb.co/TBBtNpGV/MG-4662.jpg",
+  "https://i.ibb.co/8n9wSWN0/4957781b-bee4-4872-82f4-18f9a27f1e85.jpg",
+]
+
 export function About() {
+  const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % aboutImages.length)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section id="hakkimizda" className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
@@ -53,19 +73,38 @@ export function About() {
             </div>
           </div>
 
-          {/* Right Column - Image */}
+          {/* Right Column - Image Slider */}
           <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://i.ibb.co/fzVg5Bmz/Whats-App-mage-2026-04-07-at-22-43-46.jpg"
-                alt="SZKVIPTRANSFER Merkez"
-                className="w-full h-full object-cover"
-              />
+            <div className="aspect-[4/5] overflow-hidden bg-neutral-100 relative">
+              {aboutImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`SZKVIPTRANSFER Görsel ${index + 1}`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                    index === currentImage ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-5">
+              {aboutImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImage(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentImage
+                      ? "w-8 bg-gold"
+                      : "w-2 bg-neutral-300"
+                  }`}
+                  aria-label={`Görsel ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
-
-
       </div>
     </section>
   )
