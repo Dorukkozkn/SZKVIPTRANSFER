@@ -306,7 +306,7 @@ Para Birimi: ${selectedCurrency}`
     <section className="relative min-h-screen flex flex-col justify-center overflow-visible px-4 py-24">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tzoo.13733.0.1135660.iStock-821804760-1-antalya-QJTkPkfLVAnAYOU5EzyfxlLvhDZR5C.jpg"
+          src="https://i.ibb.co/dw7fv47S/DSADAS.png"
           className="w-full h-full object-cover"
           alt="Antalya"
         />
