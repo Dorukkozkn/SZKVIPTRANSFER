@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import "./globals.css"
 
 const siteUrl = "https://szkviptransfer.com"
@@ -273,6 +274,21 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="48x48" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
+
+        {/* Google Tag Manager */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18296305341"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18296305341');
+          `}
+        </Script>
       </head>
 
       <body>
