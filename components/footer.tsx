@@ -25,7 +25,7 @@ export function Footer() {
             </p>
             
             {/* Social Media */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex gap-4">
               <a href="https://www.instagram.com/szkviptransfer" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
@@ -36,12 +36,6 @@ export function Footer() {
                 <TiktokIcon />
               </a>
             </div>
-
-            {/* Email */}
-            <a href="mailto:szkviptransfer@hotmail.com" className="text-white/50 hover:text-gold transition-colors flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              <span className="text-sm">szkviptransfer@hotmail.com</span>
-            </a>
           </div>
 
           {/* Quick Links */}
@@ -68,9 +62,9 @@ export function Footer() {
                 <Phone className="w-4 h-4" />
                 <span>+90 537 959 20 75</span>
               </a>
-              <a href="mailto:info@szkviptransfer.com" className="flex items-center gap-3 text-white/50 hover:text-gold transition-colors">
+              <a href="mailto:szkviptransfer@hotmail.com" className="flex items-center gap-3 text-white/50 hover:text-gold transition-colors">
                 <Mail className="w-4 h-4" />
-                <span>info@szkviptransfer.com</span>
+                <span>szkviptransfer@hotmail.com</span>
               </a>
               <div className="flex items-start gap-3 text-white/50">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
