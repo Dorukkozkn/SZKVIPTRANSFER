@@ -23,17 +23,25 @@ export function Footer() {
               Premium VIP transfer hizmetleri ile konforlu, güvenli ve 
               prestijli bir yolculuk deneyimi sunuyoruz.
             </p>
-            {/* Social Media */}
-            <div className="flex gap-4">
-              <a href="https://www.instagram.com/szkviptransfer" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a href="https://tiktok.com/@szk.vip" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
-                <TiktokIcon />
-              </a>
+{/* Social Media */}
+<div className="flex gap-4">
+  <a href="https://www.instagram.com/szkviptransfer" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
+    <Instagram className="w-4 h-4" />
+  </a>
+  <a href="#" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
+    <Facebook className="w-4 h-4" />
+  </a>
+  <a href="https://tiktok.com/@szk.vip" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
+    <TiktokIcon />
+  </a>
+</div>
+
+{/* Email */}
+<a href="mailto:szkviptransfer@hotmail.com" className="mt-4 text-white/50 hover:text-gold transition-colors flex items-center gap-2">
+  <Mail className="w-4 h-4" />
+  <span className="text-sm">szkviptransfer@hotmail.com</span>
+</a>
+
             </div>
           </div>
 
