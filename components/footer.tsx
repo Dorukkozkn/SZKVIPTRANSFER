@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Phone, Mail, MapPin, Instagram, Facebook, Twitter } from "lucide-react"
+import { Phone, Mail, MapPin, Instagram, Facebook, TrendingUp } from "lucide-react"
 
 export function Footer() {
   return (
@@ -19,14 +19,14 @@ export function Footer() {
             </p>
             {/* Social Media */}
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
+              <a href="https://www.instagram.com/szkviptransfer" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
               <a href="#" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
                 <Facebook className="w-4 h-4" />
               </a>
               <a href="#" className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors">
-                <Twitter className="w-4 h-4" />
+                <TrendingUp className="w-4 h-4" />
               </a>
             </div>
           </div>
