@@ -36,13 +36,6 @@ export function Footer() {
               </a>
             </div>
 
-            {/* Email */}
-            <a href="mailto:szkviptransfer@hotmail.com" className="text-white/50 hover:text-gold transition-colors flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              <span className="text-sm">szkviptransfer@hotmail.com</span>
-            </a>
-          </div>
-
           {/* Quick Links */}
           <div>
             <h4 className="text-white font-medium mb-6">Hızlı Bağlantılar</h4>
@@ -69,7 +62,7 @@ export function Footer() {
               </a>
               <a href="mailto:info@szkviptransfer.com" className="flex items-center gap-3 text-white/50 hover:text-gold transition-colors">
                 <Mail className="w-4 h-4" />
-                <span>info@szkviptransfer.com</span>
+                <span>szkviptransfer@hotmail.com</span>
               </a>
               <div className="flex items-start gap-3 text-white/50">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
